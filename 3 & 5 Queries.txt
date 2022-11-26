@@ -1,0 +1,99 @@
+======================3==============================
+select * from (SELECT DISTINCT
+    es.hosp_name,
+    es.hosp_type,
+    el.LOC_NAME AS District,
+    (SELECT LISTAGG(ehs.icd_cat_code,',') WITHIN GROUP(ORDER BY ehs.icd_cat_code) AS specialities FROM ehfm_hosp_speciality ehs WHERE is_active_flg = 'Y' AND phase_id = '1' AND renewal = '1' 
+    AND scheme_id = 'CD201' and ehs.hosp_id=es.hosp_id) as specialities,
+    es.CRT_DT as Hospitals_empanelled_date,
+    emd.FIRST_NAME||' '||emd.MIDDLE_NAME||' '||emd.LAST_NAME as Name_of_Medco,
+    emd.MOBILE_NO as Medco_contact_number,
+    ehmd.FIRST_NAME||' '||ehmd.MIDDLE_NAME||' '||ehmd.LAST_NAME as Name_of_Mitra,
+    ehmd.MOBILE_NO as Mitra_contact_number
+FROM
+    ehfm_hospitals es,
+    ehfm_locations el,
+    (
+        SELECT * FROM
+            ehfm_hosp_mithra_dtls ehmd,EHFM_USERS EU
+        WHERE
+            end_dt IS NULL
+            AND scheme = 'CD201'
+            AND SERVICE_FLG='Y'
+            AND EU.USER_TYPE='CD201'
+            AND ehmd.MITHRA_ID=EU.USER_ID
+    ) ehmd,
+    (
+        SELECT * FROM
+            EHFM_MEDCO_DTLS ehmd,EHFM_USERS EU
+        WHERE
+            end_dt IS NULL
+            AND scheme = 'CD201'
+            AND SERVICE_FLG='Y'
+            AND EU.USER_TYPE='CD201'
+            AND ehmd.MEDCO_ID=EU.USER_ID
+    ) emd
+WHERE
+          es.HOSP_DIST = el.loc_id
+    AND   loc_hdr_id = 'LH6'
+    AND   hosp_active_yn = 'Y'
+    AND   ES.scheme = 'CD201'
+    AND   es.HOSP_ID(+)=EHMD.HOSP_ID
+    and   es.HOSP_ID(+)=emd.hosp_id) where specialities like 'M1,%';
+    =============================================================================================
+
+    ======================================5===============================================
+
+    SELECT
+    b.loc_name state,
+    a.district,
+    SUM(mitra_count) mitra_count
+FROM
+    (SELECT
+            d.loc_parnt_id,
+            d.loc_hdr_id,
+            d.loc_name district,
+            COUNT(a.user_id) mitra_count
+        FROM
+            ehfm_users a,
+            ehfm_hosp_mithra_dtls b,
+            ehfm_hospitals c,
+            (SELECT * FROM ehfm_locations
+                WHERE active_yn = 'Y') d
+        WHERE
+            a.user_id = b.mithra_id
+            AND   b.hosp_id = c.hosp_id
+            AND   c.hosp_dist = d.loc_id
+            AND   a.dsgn_id = 'DG3009'
+            AND   c.scheme = 'CD201'
+            AND   a.service_flg = 'Y'
+            AND   b.end_dt IS NULL
+        GROUP BY
+            d.loc_parnt_id,
+            d.loc_hdr_id,
+            d.loc_name
+    )A,
+    
+    (SELECT DISTINCT
+            b.loc_name,
+            a.loc_parnt_id,
+            a.loc_hdr_id,
+            COUNT(a.loc_id) district
+        FROM
+            ehfm_locations a,
+            (SELECT * FROM ehfm_locations
+                WHERE loc_hdr_id = 'LH1' AND   active_yn = 'Y') b
+        WHERE
+            a.loc_hdr_id = 'LH6'
+            AND   a.loc_parnt_id = b.loc_id
+            AND   a.active_yn = 'Y'
+        GROUP BY
+            b.loc_name,
+            a.loc_parnt_id,
+            a.loc_hdr_id)b
+
+WHERE
+    a.loc_parnt_id = b.loc_parnt_id
+    and  a.loc_hdr_id=b.loc_hdr_id
+GROUP BY
+    b.loc_name,a.district;
