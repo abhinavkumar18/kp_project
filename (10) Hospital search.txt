@@ -1,0 +1,102 @@
+SELECT DISTINCT
+    es.hosp_name,
+    es.hosp_type,
+    el.loc_name AS district,
+    (SELECT LISTAGG(ess.DIS_MAIN_NAME,',') WITHIN GROUP(ORDER BY ess.DIS_MAIN_NAME) AS specialities FROM ehfm_hosp_speciality ehs,
+    EHFM_SPECIALITIES ESS
+    WHERE is_active_flg = 'Y' AND phase_id = '1' AND renewal = '1' 
+    AND scheme_id = 'CD201' and ehs.hosp_id=es.hosp_id
+    AND ESS.DIS_MAIN_ID=ehs.icd_cat_code
+    AND ess.DIS_ACTIVE_YN='Y'
+    ) as specialities,
+    name_of_medco,
+    medco_contact_number,
+    name_of_mitra,
+    mitra_contact_number
+FROM
+    ehfm_hospitals es,
+    ehfm_locations el,
+    (
+        SELECT DISTINCT
+            ehs.hosp_id,
+            LISTAGG(eu.first_name
+            || ' '
+            || eu.middle_name
+            || ' '
+            || eu.last_name,
+            ',') WITHIN GROUP(
+            ORDER BY
+                eu.first_name
+                || ' '
+                || eu.middle_name
+                || ' '
+                || eu.last_name
+            ) AS name_of_mitra,
+            LISTAGG(eu.mobile_no,
+            ',') WITHIN GROUP(
+            ORDER BY
+                eu.mobile_no
+            ) AS mitra_contact_number
+        FROM
+            ehfm_hosp_mithra_dtls ehmd,
+            ehfm_users eu,
+            ehfm_hospitals ehs
+        WHERE
+            ehmd.end_dt IS NULL
+            AND   ehmd.scheme = 'CD201'
+            AND   eu.service_flg = 'Y'
+            AND   eu.user_type = 'CD201'
+            AND   ehmd.mithra_id = eu.user_id
+            AND   ehs.hosp_id = ehmd.hosp_id
+            AND   ehs.hosp_active_yn = 'Y'
+            AND   ehs.scheme = 'CD201'
+            AND   ehs.hosp_type IN ('G','C')
+        GROUP BY
+            ehs.hosp_id
+    ) ehmd,
+    (
+        SELECT DISTINCT
+            ehs.hosp_id,
+            LISTAGG(eu.first_name
+            || ' '
+            || eu.middle_name
+            || ' '
+            || eu.last_name,
+            ',') WITHIN GROUP(
+            ORDER BY
+                eu.first_name
+                || ' '
+                || eu.middle_name
+                || ' '
+                || eu.last_name
+            ) AS name_of_medco,
+            LISTAGG(eu.mobile_no,
+            ',') WITHIN GROUP(
+            ORDER BY
+                eu.mobile_no
+            ) AS medco_contact_number
+        FROM
+            ehfm_medco_dtls ehmd,
+            ehfm_users eu,
+            ehfm_hospitals ehs
+        WHERE
+            ehmd.end_dt IS NULL
+            AND   ehmd.scheme = 'CD201'
+            AND   eu.service_flg = 'Y'
+            AND   eu.user_type = 'CD201'
+            AND   ehmd.medco_id = eu.user_id
+            AND   ehs.hosp_id = ehmd.hosp_id
+            AND   ehs.hosp_active_yn = 'Y'
+            AND   ehs.scheme = 'CD201'
+            AND   ehs.hosp_type IN ('G','C')
+        GROUP BY
+            ehs.hosp_id
+    ) emd
+WHERE
+    es.hosp_dist = el.loc_id
+    AND   es.hosp_active_yn = 'Y'
+    AND   es.scheme = 'CD201'
+    AND   loc_hdr_id = 'LH6'
+    AND   es.hosp_type IN ('G','C')
+    AND   es.hosp_id = ehmd.hosp_id (+)
+    AND   es.hosp_id = emd.hosp_id (+);

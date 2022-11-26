@@ -1,0 +1,18 @@
+SELECT DISTINCT
+    --el.loc_name AS District,
+    els.LOC_ID,
+    els.LOC_NAME,
+    --el.loc_id as District_id,
+    COUNT(DISTINCT ehs.hosp_id) AS Govt_Hospitals_Count,
+    COUNT(DISTINCT ehss.hosp_id) AS Pvt_Hospitals_Count
+FROM
+    (select * from ehfm_hospitals where hosp_active_yn = 'Y' and scheme = 'CD201' and hosp_type='G')ehs,
+    (select * from ehfm_hospitals where hosp_active_yn = 'Y' and scheme = 'CD201' and hosp_type='C')ehss,
+     (select * from ehfm_locations where loc_hdr_id='LH1') ELS,
+    (select * from ehfm_locations where loc_hdr_id = 'LH6')el   
+WHERE
+    ehs.HOSP_DIST = el.loc_id
+    and ehss.HOSP_DIST=el.loc_id
+    and ELS.LOC_ID=el.LOC_PARNT_ID
+    --AND els.LOC_ID='S35'
+    GROUP BY els.LOC_ID,els.LOC_NAME;
