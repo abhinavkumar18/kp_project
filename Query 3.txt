@@ -1,0 +1,67 @@
+--S35	TELANGANA
+--S17	ANDHRA PRADESH
+--S3	TAMIL NADU
+================================
+select * from (
+SELECT
+    a.loc_parnt_id,
+    b.loc_name state,
+    a.district,
+    SUM(mitra_count) mitra_count
+FROM
+    (SELECT
+            d.loc_parnt_id,
+            c.STATE_CODE,
+            d.loc_hdr_id,
+            d.loc_name district,
+            COUNT(a.user_id) mitra_count
+        FROM
+            ehfm_users a,
+            ehfm_hosp_mithra_dtls b,
+            ehfm_hospitals c,
+            (SELECT * FROM ehfm_locations
+                WHERE active_yn = 'Y') d
+        WHERE
+            a.user_id = b.mithra_id
+            AND   b.hosp_id = c.hosp_id
+            AND   c.hosp_dist = d.loc_id
+            AND   a.dsgn_id = 'DG3009'
+            AND   c.scheme = 'CD201'
+            AND   a.service_flg = 'Y'
+            AND   b.end_dt IS NULL
+        GROUP BY
+            d.loc_parnt_id,
+            c.STATE_CODE,
+            d.loc_hdr_id,
+            d.loc_name
+    )A,
+    
+    (SELECT DISTINCT
+            b.loc_name,
+            a.loc_parnt_id,
+            a.loc_hdr_id,
+            COUNT(a.loc_id) district
+        FROM
+            ehfm_locations a,
+            (SELECT * FROM ehfm_locations
+                WHERE loc_hdr_id = 'LH1' AND   active_yn = 'Y') b
+        WHERE
+            a.loc_hdr_id = 'LH6'
+            AND   a.loc_parnt_id = b.loc_id
+            AND   a.active_yn = 'Y'
+        GROUP BY
+        
+            b.loc_name,
+            a.loc_parnt_id,
+            a.loc_hdr_id)b
+
+WHERE
+    a.loc_parnt_id = b.loc_parnt_id
+    and  a.loc_hdr_id=b.loc_hdr_id
+GROUP BY
+    a.loc_parnt_id,b.loc_name,a.district
+    ) where LOC_PARNT_ID='S17';
+
+
+
+
