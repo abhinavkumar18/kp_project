@@ -1,0 +1,134 @@
+SELECT
+    DISTINCT
+    upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )') Speciality,
+    SUM(a.procedures_count) procedures_count,
+    SUM(b.hospitals_count) hospitals_count
+FROM
+    (
+        SELECT
+            asri_code,
+            COUNT(DISTINCT icd_proc_code) AS procedures_count
+        FROM
+            ehfm_main_therapy
+        WHERE
+            active_yn = 'Y'
+            AND   state = 'CD201'
+        GROUP BY
+            asri_code
+    ) a,
+    (
+        SELECT
+            dis_main_id,
+            dis_main_name,
+            COUNT(DISTINCT ehs.hosp_id) AS hospitals_count
+        FROM
+            ehfm_hosp_speciality ehs,
+            ehfm_specialities es,
+            ehfm_hospitals eh
+        WHERE
+            is_active_flg = 'Y'
+            AND scheme_id = 'CD201'
+            AND ehs.icd_cat_code = es.dis_main_id
+            and eh.hosp_id=ehs.hosp_id
+            and eh.HOSP_ACTIVE_YN='Y'
+            AND eh.SCHEME='CD201'
+            AND eh.hosp_type IN ('G','C')
+        GROUP BY
+            dis_main_id,
+            dis_main_name
+    ) b
+WHERE
+    a.asri_code = b.dis_main_id
+    group by upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )');
+
+2******************************************
+
+SELECT
+    DISTINCT
+    upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )') Speciality,
+    SUM(a.procedures_count) procedures_count,
+    SUM(b.hospitals_count) hospitals_count
+FROM
+    (
+        SELECT
+            asri_code,
+            COUNT(DISTINCT icd_proc_code) AS procedures_count
+        FROM
+            ehfm_main_therapy
+        WHERE
+            active_yn = 'Y'
+            AND   state = 'CD201'
+        GROUP BY
+            asri_code
+    ) a,
+    (
+        SELECT
+            dis_main_id,
+            dis_main_name,
+            COUNT(DISTINCT ehs.hosp_id) AS hospitals_count
+        FROM
+            ehfm_hosp_speciality ehs,
+            ehfm_specialities es,
+            ehfm_hospitals eh
+        WHERE
+            is_active_flg = 'Y'
+            AND scheme_id = 'CD201'
+            AND ehs.icd_cat_code = es.dis_main_id
+            and eh.hosp_id=ehs.hosp_id
+            and eh.HOSP_ACTIVE_YN='Y'
+            AND eh.SCHEME='CD201'
+            AND eh.hosp_type IN ('G','C')
+        GROUP BY
+            dis_main_id,
+            dis_main_name
+    ) b
+WHERE
+    a.asri_code = b.dis_main_id
+    group by upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )');
+
+10***************************************************
+
+SELECT
+    DISTINCT
+    upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )') Speciality,
+    SUM(a.procedures_count) procedures_count,
+    SUM(b.hospitals_count) hospitals_count
+FROM
+    (
+        SELECT
+            asri_code,
+            COUNT(DISTINCT icd_proc_code) AS procedures_count
+        FROM
+            ehfm_main_therapy
+        WHERE
+            active_yn = 'Y'
+            AND   state = 'CD201'
+        GROUP BY
+            asri_code
+    ) a,
+    (
+        SELECT
+            dis_main_id,
+            dis_main_name,
+            COUNT(DISTINCT ehs.hosp_id) AS hospitals_count
+        FROM
+            ehfm_hosp_speciality ehs,
+            ehfm_specialities es,
+            ehfm_hospitals eh
+        WHERE
+            is_active_flg = 'Y'
+            AND scheme_id = 'CD201'
+            AND ehs.icd_cat_code = es.dis_main_id
+            and eh.hosp_id=ehs.hosp_id
+            and eh.HOSP_ACTIVE_YN='Y'
+            AND eh.SCHEME='CD201'
+            AND eh.hosp_type IN ('G','C')
+        GROUP BY
+            dis_main_id,
+            dis_main_name
+    ) b
+WHERE
+    a.asri_code = b.dis_main_id
+    group by upper(b.dis_main_name|| ' ( '|| b.dis_main_id|| ' )');
+
+11******************************************
