@@ -1,0 +1,120 @@
+SELECT distinct
+    el.loc_ID AS state_code,
+    el.loc_name AS state,
+    COUNT(USER_ID) AS mitra_count
+FROM
+    ehfm_hospitals es,
+    ehfm_locations el,
+    (
+        SELECT
+            DISTINCT HOSP_ID,USER_ID
+        FROM
+            ehfm_hosp_mithra_dtls ehmd,EHFM_USERS EU
+        WHERE
+                ehmd.end_dt IS NULL
+            AND ehmd.scheme = 'CD201'
+            AND eu.SERVICE_FLG='Y'
+            AND eu.USER_TYPE='CD201'
+            AND ehmd.MITHRA_ID=EU.USER_ID
+    ) ehmd
+WHERE
+          es.state_code = el.loc_id
+    AND   el.loc_hdr_id = 'LH1'
+    AND   es.hosp_active_yn = 'Y'
+    AND   ES.scheme = 'CD201'
+    AND   es.HOSP_ID=EHMD.HOSP_ID
+    --and   es.STATE_CODE='S35'
+    GROUP BY el.loc_name,el.loc_ID;
+
+*******************************************************
+SELECT DISTINCT
+    el.loc_id,
+    loc_name,
+    count(ehmd.mithra_id) as mithra_count
+FROM
+    ehfm_hosp_mithra_dtls ehmd,
+    ehfm_users eu,
+    ehfm_hospitals eh,
+    ehfm_locations el
+WHERE
+    ehmd.end_dt IS NULL
+    AND   ehmd.scheme = 'CD201'
+    AND   service_flg = 'Y'
+    AND   user_type = 'CD201'
+    AND   ehmd.mithra_id = eu.user_id
+    AND   ehmd.hosp_id = eh.hosp_id
+    AND   eh.hosp_active_yn = 'Y'
+    AND   eh.scheme = 'CD201'
+    --AND   eh.state_code = 'S1'
+    AND   eh.hosp_dist = el.loc_id
+    group by  el.loc_id,loc_name;
+**************************************
+SELECT DISTINCT
+    eu.first_name
+    || ' '
+    || eu.middle_name
+    || ' '
+    || eu.last_name AS name_of_mitra,
+    eu.mobile_no AS mitra_contact_number,
+    es.loc_name AS district,
+    es.hosp_id,
+    esu.hosp_name,
+    esu.specialities
+FROM
+    (
+        SELECT
+            *
+        FROM
+            ehfm_hosp_mithra_dtls ehmd,
+            ehfm_users eu
+        WHERE
+            end_dt IS NULL
+            AND   scheme = 'CD201'
+            AND   service_flg = 'Y'
+            AND   user_type = 'CD201'
+            AND   ehmd.mithra_id = eu.user_id
+    ) eu,
+    (
+        SELECT
+            *
+        FROM
+            ehfm_hospitals es,
+            ehfm_locations el
+        WHERE
+            es.hosp_dist = el.loc_id
+            AND   es.hosp_active_yn = 'Y'
+            AND   es.scheme = 'CD201'
+            AND   loc_hdr_id = 'LH6'
+    ) es,
+    (
+        SELECT
+            es.hosp_id,
+            es.hosp_name,
+            LISTAGG(ehs.icd_cat_code,
+            ',') WITHIN GROUP(
+            ORDER BY
+                ehs.icd_cat_code
+            ) AS specialities
+        FROM
+            ehfm_hospitals es,
+            (
+                SELECT
+                    *
+                FROM
+                    ehfm_hosp_speciality
+                WHERE
+                    is_active_flg = 'Y'
+                    AND   phase_id = '1'
+                    AND   renewal = '1'
+                    AND   scheme_id = 'CD201'
+            ) ehs
+        WHERE
+            es.hosp_active_yn = 'Y'
+            AND   es.scheme = 'CD201'
+            AND   es.hosp_id = ehs.hosp_id (+)
+        GROUP BY
+            es.hosp_id,es.hosp_name
+    ) esu
+WHERE
+    es.hosp_id = eu.hosp_id
+    AND   es.hosp_id = esu.hosp_id;
