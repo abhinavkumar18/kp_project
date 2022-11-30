@@ -1,0 +1,1002 @@
+
+
+Arogysri:
+
+
+Accounts
+Vendor Payments	(indv process)
+Trust Salary Payment (indv process)
+Imprest Payments (indv process)
+Advance Adjustment (indv process)
+Contra Payments	(indv process)
+Receipts (indv process)
+Fixed Asset Register (indv process)
+Fixed Deposits (indv process)
+TDS Remittance (indv process)
+Cheque Book Register (indv process)
+Field Salaries (indv process)
+Advance Vendor Payment (indv process)
+
+
+Admin Sanction & Vendor Payment
+Admin Sanction Workflow
+Vendor Payments
+Workflow for Vendor Payments
+
+
+Claim Process
+
+Dashboard
+http://10.48.19.52/
+
+
+kibanaadmin
+apr1
+
+
+
+Username	Password
+4428_suvam	G8HM2HENB7
+
+c009, trust -admin
+
+ap_c277, searching any user
+
+
+285,608
+
+medco13_ggh_gnt
+
+Sys Admin >Grievance> Worklist> My cases> Update Pending Griecvances> Worklist -M
+Sys Admin >Grievance> Worklist> My cases> Update Pending Griecvances> Send to Worklist VL (Duplicate page)
+
+Sys Admin >Grievance> Worklist>Views> Grievance> General Information View -M
+Sys Admin >Grievance> Worklist>Views> Grievance> Grievance view -M
+Sys Admin >Grievance> Worklist>Views> Grievance> Resolved Grievances - Status update L
+Sys Admin >Grievance> Worklist>Views> Grievance> Closed Grievances - Status update L
+
+Sys Admin >Finance> Worklist>My case> TDS Payments> not populated
+Sys Admin >Finance> View>TDS>TDS Exemption Search -M
+Sys Admin >Finance> View>TDS>Hospital wise TDS Status report -L
+Sys Admin >Finance> View>TDS>TDS Statutory document
+Sys Admin >Finance> View>TDS>Documents view
+Sys Admin >Finance> View>TDS>Payment Report Hospital wise
+Sys Admin >Finance> View>TDS>Status report -M
+
+DGM MIS>Finance> View> TDS>TDS Status report - duplicate
+DGM MIS>Finance> View> TDS>View Pay slips , Payslips, reports duplcated
+DGM MIS>Finance> View>ASARA>ASARA Paid response file
+DGM MIS>Finance> View>ASARA>Payment failed respond file
+DGM MIS>Finance> View>ASARA>sent for Payment Response file
+Not eligible for Asara
+ASARA pages are not opening
+
+System Admin >EDM> Views > Empanelment>Agenda List L
+System Admin >EDM> Views > Empanelment> Fresh EDC hospital -L
+Physical MOU/SCA report -H
+Service Tax Registration certificates-L
+Usage Report -VH
+MOU's Report-H
+Delisted/Rejected Report -M
+Comparative MOU Report-H, duplicated
+Explanation Report-H
+Expertise details search-H
+Hospital Wise Medco/Amcco details-M
+MOUs/SCA to be executed by Trust/Insurance- duplicated
+System Admin >EDM> Views >My Cases> Change Request - VH
+
+System Admin> Field Operations> Views> Health Camps
+Health camp Details -M
+HC Payments -L
+Hospital Schedule-L
+HC Payment Status -L
+AAM confirmation Report L
+System Admin> Field Operations> Views> PHC informations> Referred Patients view - not opening
+System Admin> Field Operations> Views> PHC informations> Non Referred Patients view -M
+System Admin> Field Operations> Views> Health Camp  informations> Referred Patients view -M
+System Admin> Field Operations> Views> Health Camp  informations> Non Referred Patients view -M
+
+
+System Admin> Field Operations> Reports>DMHO report> Patient Discharge Feedback -L
+
+DGM_MIS> Views> Health Camps> PHC health Camps, Health camps, PHC information, Health Camp information are similar as above
+DGM_MIS> Views>Forms View> Firld staff advance Tour plan view -M
+Field staff tour diary view -M
+Health camp IEC activity Report view -M
+Health Camp Visit View - Not opening
+Hospital feedback view - H
+Minutes of Meeting view -M
+NAM-EOS Form view -M
+NWH inspection (Non-Tech) Form view- -H
+NWH inspection (Tech) Form view -H
+PHC inspection (Non-Tech) Form view -M
+PHC inspection (Tech) Form view -M
+Telephonic intimation form view- H
+Verification of death cases - non technical view -H
+Verification of death cases - technical view -H, not able to check if it is duplicated
+
+
+DGM_MIS> Field Operations>Reports > Medco Enrollment Reports -M
+
+Sys admin > Operations> Production Support> Upload On bed Photo - N
+
+Sys admin > Operations> Worklist> Initiate cases> Update Death Case -M
+Sys admin > Operations> Worklist> Initiate cases> Orphan Enrollment -M
+Sys admin > Operations> Worklist> Initiate cases> Generate Orphan Enrollment cards -L
+
+Sys admin > Operations> View> Telephonic Intimations -M
+Sys admin > Operations> View> Details- Card Search -VH
+Sys admin > Operations> View> Out patient View -M
+Sys admin > Operations> View> Orphan Enrollment -H View
+Registered On Bed Patient -M
+Registered Case View - L
+CMO Non referred Patients View -M
+CMO Referred Patients View -
+PHC Non referred Patients View -M
+PHC Referred Patients View- 
+Health Camp Non referred Patients View-M
+Health Camp Referred Patients View
+
+Sys admin > Operations> View> Cases Search -M
+Nephroplus Attachments- L
+Post-dialysis Nephro plus cases -M (Not opening)
+View Flagged cases(New) -M
+Approved cases -L
+Death cases view -M
+Discharge report -M
+Mitra Form report -M
+View Cochlear claims - H
+View all Followup claims- M
+
+Superadmin > Operations> View > Cases> Discharge Report - Already Covered
+Mitra Form Report  - Already Covered
+
+DGM-MIS> Operations> Worklist> DCT View > DCT Report -M
+DGM-MIS> Operations> Views> Patients> Details Card Search -Already Covered
+Details Out Patient View - Already Covered
+Registered -On bed portal - Already Covered
+Registered cases view - Already Covered
+
+DGM-MIS> Operations> Views> Cases - Already Covered
+
+DGM-MIS> Operations> Views> Death Cases -Already Covered
+
+My cases is not opening
+
+CMS> Change Management System -VH
+Zimbra Mail : Mail platform
+
+FAQ >VL
+
+NAM> Operations>Worklist>Initiate Cases> Amrutha Card Registration-M
+Register Patient -VH
+Reffered -CMCO Refferred Patients -View -H
+NAM> Operations>Worklist>My cases>Cases for Approval - VVH
+Cochlear Claims for approval-VH
+Follow up claims for Approval new -H
+Cochlear cases for Approval-VH (SIMILAR to)
+Hemo dialysis cases for approval -VH (SIMILAR)
+Patient A/C update for other Hospital -VH
+Patient Feedback - Not clear
+Patient A/C update -M
+Patient A/C update (CMCO) -M
+Pending out-Patient cases -M
+Referred Cases -L
+
+NAM> Operations> View> Patients> CM Out Patients View-M
+NAM> Operations> View> Patients> Telephonic Intimations -M
+Details Card search- H
+Details Out Patients view- M
+Registered On bed patient -M
+Registered on bed patient (NAM) -M
+Registered cases view -M
+Refererd -Health camp View -M
+Referred -PHC View -M
+Biometric Exemption - L
+Biometric Exemption view -L
+
+NAM> Operations> View> Cases> Case Search -H
+Cochlear Cases-VH 
+View Flagged Cases(new) -VH
+Approved Cases -H
+Surgery updated cases -H
+Discharge updated cases -H
+Out patient cases worklist -H
+
+NAM> Operations> View> View Cochlear claims H
+NAM> Operations> View> Follow up claims> View all followup claims -H
+
+NAM> Field Operations> Worklist>Forms> NAM EOS Form
+-H
+NAM> Field Operations> View> Health camps -M
+NAM> Field Operations> View> Forms View> NAM EOS Form view -M
+
+NAM> Field Operations> Thalassemia Registration Form -H
+NAM> Field Operations> Thalassemia View> -M
+
+
+NAM>Finance>Views> Payroll> Pay slip- M
+
+NAM>Grievance>Worklist> Initiate cases > Grievance entry> -VH
+
+NAM>Grievance>Worklist> My cases > Grievance worklist> -H
+
+NAM>Admin> Worklist> Initiate Cases> Biometric Enrollment -VH
+
+NAM>Admin> View> Others> Biom Not enrolled Emp view-M
+NAM>Admin> View> Others> Digital -M
+
+NAM>Admin> Misc> Employee application form - VH
+
+
+
+PHC mitra>Operations> Worklist> Initiate cases> New RF entry - H
+Mitra Details Update -M
+
+PHC mitra>Operations>View> Patients> Telephonic Initimations -M Similar to NAM
+Details -New OP entry -M Similar to NAM
+Details PHC Out patients view  -M
+
+PHC mitra>Operations>View> Referred Patients> H
+
+PHC mitra> Field Operations> Thalassemia Registration Form - Similar to NAM
+PHC mitra> Field Operations> Thalassemia View> -Similar to NAM
+
+PHC mitra> Finance> Views> Payroll> Payslip - M Similar
+PHC mitra> Grievance> Worklist> My cases> Grievance Worklist  Similar
+
+PHC mitra> Grievance> View> Grivance> Grivance View --M
+
+NAM>Admin> Misc> Employee application form - VH Similar
+
+NAM>Admin> View> Others> Digital Sign -M
+
+############################
+CMCO registration
+ITEX>Operations> Views> Patient> Telephinc intimations 
+Details Card Search
+Details Out Patients View
+Registered On bed patient
+Registered case view
+
+ITEX> Operations> View> Case Search
+ITEX> Operations> View> Cochlear case
+Discharge Report
+Mithra Form Report
+
+
+Operations pages are avl in NAM
+
+ITEX> Field Operations> Reports>MEDCO enrollment reports > H
+
+ITEX> EDM> Worklist> My cases> Change Request> VH
+PHC mitra> Finance> Views> Payroll> View Payslips> M
+
+ITEX> Grievance > Worklist> My cases> Grievance Worklist-  Need to check whether similar
+ITEX> Grievance > view> Grievance view Need to check whether similar
+
+ITEX>Admin> View> Others> Digital Sign -M
+
+Grievance Executive -- Not opening
+
+
+COM> Operations> Worklist> Initate cases> CMO RF entry> Similar like Register Patient
+COM> Operations> Worklist> My cases> CMO Referred Patients by Mitra> VH, need to check similarity
+
+COM> Operations> View>CMO Referred Patients> CM out oatiet View - M need to check similarity
+
+COM>Admin> View>Misc>Others> Digital Sign -M
+
+
+COD> Operations> Worklist> My cases> CMO Referred patients by doctor -> M, need to check similarity
+
+COD> Operations> Worklist> My cases> CCMO Referred patients by mithra-> M ,need to check similarity
+
+COD> Operations> Views>Patients> Telephonic Intimations
+COD> Operations> Views>Patients> CMO Non Referred Patients view
+COD> Operations> Views> Patients> CMO Non Referred Patients view
+COD> Admin> View>Misc>Others> Digital Sign -M
+
+Similar to CMO
+
+COD> Finance> Views> View Pay Slips> similar like payslip view 
+
+COD> Admin> Worklist > Biometric Enrollment > Check with NAM screen
+
+COD> Admin> Misc> Others> Biom Not enrolled Emp view > Similar as NAM admin view
+Digital sign- similar
+
+Manager MIS> Operations> Worklist> DCT view> DCT report >VH
+
+Manager MIS> Operations> View> Patients> Details Card search - similar as sys admin
+Manager MIS> Operations> View> Patients> Details Out Patients View  - similar 
+Manager MIS> Operations> View> Patients> Registered On bed patient View  - similar 
+Manager MIS> Operations> View> Patients> Registered case View  - similar 
+
+Manager MIS> Operations> View> Case> Death Case  - M
+Manager MIS> Operations> View> Cochlear claims> View Cochlear Claims> similar
+Manager MIS> Operations> View> Cochlear claims> followup Claims> similar
+
+Manager MIS> Field Operations> View> PHC informations> PHC non referred Patients view - M, need to check similarity
+
+Manager MIS> Field Operations> View> PHC informations> Health Camp Information - M, need to check similarity
+
+Manager MIS> Field Operations>View> Forms View> Field staff Advance Tour Plan View -VH
+Manager MIS> Field Operations>View> Forms View> Field staff Tour Diary view VH
+Manager MIS> Field Operations>View> Forms View> Health camp Visit view -VH
+Manager MIS> Field Operations>View> Forms View> Hospital Feedback view - H
+Manager MIS> Field Operations>View> Forms View> Minutes of Meeting view - VH
+Manager MIS> Field Operations>View> Forms View> NM-EOS form view- VH
+Manager MIS> Field Operations>View> Forms View> NWH Inspection (Non-tech Form View) -VH
+Manager MIS> Field Operations>View> Forms View> NWH Inspection (Tech Form View), not avl but shd be similar 
+Manager MIS> Field Operations>View> Forms View> PHC Inspection View (Non-tech)-VH
+Manager MIS> Field Operations>View> Forms View> PHC Inspection View (Tech) not avl but shd be similar 
+Telephonic Intimation form view - similar
+Manager MIS> Field Operations>View> Forms View>Verification of Death Case- Non technical view -VH
+Manager MIS>Field Operations>View> Forms View> Verification of Death Case- Technical view -VH
+
+
+Manager MIS> Field Operations>Reports > Medco Enrollment Reports similar as DGM_MIS
+Manager MIS> Finances>View> TDS> TDS status report- M
+Manager MIS> Finances>Worklist> MY Cases> grievance worklist> check with as NAM
+
+Manager MIS> Field Operations>Reports > Live Report> Attendance Report -VH
+Manager MIS> Field Operations>Reports > Live Report> Preauth Monitoring Report -VH
+Manager MIS> Field Operations>Reports > Live Report> Surgery Analysis Report -VH
+
+CEX>Operations> Worklist> My cases> Cochlear cases for approvals> Andhra Pradesh -M
+CEX>Operations> Worklist> My cases> Cochlear cases for approvals> Other state, will be similar
+CEX>Operations> Worklist> My cases> Claim Cases> Govt and Corp Hopital All - VH
+
+CEX> Operations> View> Patients> Details Card search - similar as sys admin
+Manager MIS> Operations> View> Patients> Details Out Patients View  - similar 
+Manager MIS> Operations> View> Patients> Registered On bed patient View  - similar 
+Manager MIS> Operations> View> Patients> Registered case View  - similar 
+
+CEX> Operations> View> Cases> Death Case view> similar as Manager MIS
+CEX> Operations> View> Cases> Follow up claims> view all followup claims  similar as Manager MIS
+ 
+CEX> Admin> View>Misc>Others> Digital Sign -M
+
+
+FCX> Operations> View> Worklist> My cases > Follow up claims for approval - VH
+
+FCX> Operations> Views> Cases> Case Search- similar
+FCX> Operations> Views> Follow up claims> View all follow up claims - similar
+CEX> Admin> View>Misc>Others> Digital Sign -M
+
+PEX log in Dash board --VH
+
+PEX> Operations> Worklist> Initiate cases> Telephonic Patient entry - VH
+
+PEX> Operations> Worklist> My cases> Cases for approval
+> Adhra pradesh -VH
+PEX> Operations> Worklist> My cases> Cases for approval
+> Other
+
+PEX> Operations> Worklist> My cases>Covid 19 Cases for approval> Adhra pradesh --SIMILAR
+PEX> Operations> Worklist> My cases>Covid 19 Cases for approval> Other --SIMILAR
+
+PEX> Operations> Worklist> My cases>Patient A/C for approvals --SIMILAR
+PEX> Operations> Worklist> My cases>Hemo dialysis cases for approval- AP --SIMILAR
+PEX> Operations> Worklist> My cases>Hemo dialysis cases for approval- Other--SIMILAR
+PEX> Operations> Worklist> My cases>Thalasemis cases for approval> In patient> Andhra Pradesh --SIMILAR
+PEX> Operations> Worklist> My cases>Thalasemis cases for approval> In patient> Other
+PEX> Operations> Worklist> My cases>Thalasemis cases for approval - Other --SIMILAR
+
+PEX> Operations> View> Patients> Telephonic intimations- similar as sys admin
+Manager MIS> Operations> View> Patients> Details Card search- similar
+Manager MIS> Operations> View> Patients> Details out paient View  - similar 
+Manager MIS> Operations> View> Patients> Registered case View  - similar 
+
+PEX> EDM> Views> Empanelments> Hospital wise Medco/Amcco details -M
+PEX> EDM> Views> Empanelments> My cases> Change Requests>M
+
+PEX> Grievance> Worklist> My cases> Grievance worklist- similar
+PEX> Grievance> Worklist> My cases> Grievance view - similar
+PEX> Admin> View>Misc>Others> Digital Sign -M
+
+
+PPD (ap_pd334)
+
+Sys admin>Operations>Production support > Production support> Upload on bed photo> similar to previous sys admin 
+
+Sys admin>Operations> initiate cases> Update death cases - similar to previous sys admin 
+Sys admin>Operations> initiate cases> Orphan enrollment >similar to previous sys admin 
+Sys admin>Operations> initiate cases> Generate Orphan enrollment cards > similar to previous sys admin 
+
+Sys Admin> Operations> Views> Patients>Telephonic intimations
+Details - card Search
+Details Out patient view
+Orphan enrollment view
+Registered On bed patient
+Registered cases view
+CMO non referred patients view
+CMO referred patients view
+PHC referred Patient view
+PHC referred Patient view
+Health camp Referred Patients
+Health camp Non Referred Patients
+
+All pages similar as above
+
+Sys Admin> Operations> Views> Cases > Cases Search
+Nephroplus attachments
+Post dialysis nephroplus cases
+View flagged cases (new)
+Approved cases
+Death cases view
+Discharge reports
+Mithra form reports
+
+All pages similar as above
+
+Sys Admin> Operations> Views> Cochlear claims> View Cochlear claims> similar
+
+Sys Admin> Operations> Views> Cochlear claims> View followup claims> similar
+
+System Admin> Field Operations> Views> Health Camps
+Health camp Details 
+HC Payments
+Hospital Schedule
+HC Payment Status 
+AAM confirmation Report 
+System Admin> Field Operations> Views> PHC informations> Referred Patients view 
+System Admin> Field Operations> Views> PHC informations> Non Referred Patients view 
+System Admin> Field Operations> Views> Health Camp  informations> Referred Patients view 
+System Admin> Field Operations> Views> Health Camp  informations> Non Referred Patients view 
+
+similar as above
+System Admin >EDM> Views > Empanelment>Agenda List L
+System Admin >EDM> Views > Empanelment> Fresh EDC hospital 
+Physical MOU/SCA report
+Service Tax Registration certificates
+Usage Report 
+MOU's Report
+Delisted/Rejected Report 
+Comparative MOU Report, duplicated
+Explanation Report
+Expertise details search
+Hospital Wise Medco/Amcco details
+MOUs/SCA to be executed by Trust/Insurance- duplicated
+System Admin >EDM> Views >My Cases> Change Request 
+
+Sys Admin >Finance> Worklist>My case> TDS Payments> not populated
+Sys Admin >Finance> View>TDS>TDS Exemption Search 
+Sys Admin >Finance> View>TDS>Hospital wise TDS Status report 
+Sys Admin >Finance> View>TDS>TDS Statutory document
+Sys Admin >Finance> View>TDS>Documents view
+Sys Admin >Finance> View>TDS>Payment Report Hospital wise
+Sys Admin >Finance> View>TDS>Status report 
+
+Sys Admin >Grievance> Worklist> My cases> Update Pending Griecvances> Worklist 
+Sys Admin >Grievance> Worklist> My cases> Update Pending Griecvances> Send to Worklist 
+
+Sys Admin >Grievance> Worklist>Views> Grievance> General Information View 
+Sys Admin >Grievance> Worklist>Views> Grievance> Grievance view
+Sys Admin >Grievance> Worklist>Views> Grievance> Resolved Grievances - Status update 
+Sys Admin >Grievance> Worklist>Views> Grievance> Closed Grievances - Status update 
+
+
+All pages similar
+
+Role PTD
+PTD>Operations> Worklist> My cases> Cases of Approval> In patient> AP> - similar
+Preauth Gynaecology cases for approval - search not found-H
+Covid 19 cases for approval search not found-H
+Hemo dialysis cases for approval SIMILAR
+Thalasemia cases approval search not found-H
+
+
+PTD>Operations> View>  Patients> Details card search
+PTD>Operations> View>  Patients> Details Out patient view
+PTD>Operations> View>  Patients> Registered on bed patient
+PTD>Operations> View>  Patients> Registered cases view
+Similar as sys admin
+
+PTD>Operations> View> Cases> Cases search
+PTD>Operations> View> Cases> Cochlear cases
+PTD>Operations> View> Cases> View flagges cases (New)
+PTD>Operations> View> Cases> Death cases view
+Similar as sys admin
+
+PTD>Operations> View> Follow up claims> View all follow up claims 
+Similar
+
+PTD>Field Operations> Views >Health camps> View health camps> Similar
+PTD>Field Operations> Views >Health camps> Rejected By head FO/JEO - not opening
+
+PTD> Admin> View>Misc>Others> Digital Sign -M
+
+C021
+
+JEO EDM>Operations> Views> Cases> Cases search - Similar
+
+
+
+JEO EDM>EDM> Views> Empanelments>Physical MOU/SCA report 
+Usage Report 
+MOU's Report
+Delisted/Rejected Report 
+Comparative MOU Report
+Explanation Report
+Expertise details search
+Hospital Wise Medco/Amcco details
+MOUs/SCA to be executed by Trust/Insurance
+
+Similar as Sys admin
+
+JEO EDM> Finance> Views> View pay slips
+JEO EDM> Finance> Views> Pay slips
+JEO EDM> Finance> Views> Reports
+
+JEO EDM> Masters> Hospital Master> similar
+PTD> Admin> View>Misc>Others> Digital Sign -M
+
+EO EMP> Operations> Worklist> DCT View> DCT report> Similar
+EO EMP> Operations> Worklist> My cases> Cases for approval > In patient, One day care,  Short term
+EO EMP> Operations> Worklist> Enhancement cases for approval> H
+EO EMP> Operations> Worklist>Cochlear cases for approval - Similar
+EO EMP> Operations> Worklist> Hemo dialysis cases for approval-Similar
+EO EMP> Operations> Worklist> Cases for discussion - H
+
+EO EMP> Operations> View>  Patients> Details Out patient view
+EO EMP>Operations> View>  Patients> Registered on bed patient
+EO EMP>Operations> View>  Patients> Registered cases view
+EO EMP>Operations> View>  Patients> CMO non referred patient view> 
+EO EMP>Operations> View>  Patients> CMO referred patient view> 
+Similar
+
+EO EMP> Operations> View>  Cases> View flagged cases (New)
+EO EMP> Operations> View>  View all follow up claims (similar)
+
+EO EMP> Field Operations> Views> PHC informations> Referred Patients view 
+EO EMP> Field Operations> Views> PHC informations> Non Referred Patients view 
+EO EMP> Field Operations> Views> Health Camp  informations> Referred Patients view 
+EO EMP> Field Operations> Views> Health Camp  informations> Non Referred Patients view
+Similar as sys admin
+
+EO EMP> EDM> Worklist> My cases> Application from worklist> -VH
+EO EMP> EDM> Worklist> My cases> Inclusion of specilities-VVH
+EO EMP> EDM> Worklist> My cases> Change Requests - H, Similar
+EO EMP> EDM> Worklist> My cases> Addition of Infrastructure - VVH
+EO EMP>EDM> Worklist> Views> Empanelment> Agenda list - Similar
+Hospital empanelment view - H
+Physical MOU/SCA report- Similar
+Incusion of Specilities view -H
+Usage report - Similar
+View Mandatory document -M
+View NABH/NQAS hospitals -H
+MOU report - Similar
+Delisted/ Rejected Records - Similar
+Comparative MOU reports - Similar
+Explanation report -Similar
+Pharmacist Registration Report - H
+Pendency Report -H
+Expertise details search - Similar
+Hospital wise MEDCO/AMCCO details - Similar
+MOUs/SCA to be executed by Trust/ Insurance - Similar
+
+
+EO EMP>EDM>Views> Dashboard - H
+
+EO EMP>Finance > Views View Payslips, Payslips, Reports Similar
+
+EO EMP> Admin> Reports> Live reports> Attendance Report-H
+EO EMP> Admin> Masters> Updated Roles - L
+EO EMP> Admin> View>Misc>Others> Digital Sign -M
+
+CTD> Operations> Worklist> My cases> Cochlear case for approval - Similar
+Claims cases> Govt and Corp Hospi all> H 
+
+EO OPS>Operations> Worklist> My cases> Preauth cochlear case for approval - Similar as cochlear 
+EO OPS>Operations> Worklist> My cases> Claims Case> Similar
+EO OPS>Operations> Worklist> Cases> Case Search - Simialr
+EO OPS>Finance > Views View Payslips, Payslips, Reports Similar
+EO OPS> Admin> Reports> Not clear
+EO OPS> Admin> View>Misc>Others> Digital Sign -M
+
+CH> Operations> Worklist> My cases> Follow up claims for approval
+Cochlear claims for approval
+Enhancement cases for approval
+Pre auth cases for approval- In patient, One day care, Short Term,AP, State
+Cochlear cases for approval
+Hemo dialysis cases for approval
+Thalasemia cases for approval
+Cases for discussion
+Erroneous claims for approval -VVH
+Initiation of erroneous claims -VVH
+
+CH> Operations> Views> Patients>Telephonic intimations - Similar
+Details - card Search- similar
+CH> Operations> Views> Cases > Cases Search
+Nephroplus attachments
+Post dialysis nephroplus cases
+View flagged cases (new)
+CH> Operations> Views> Cochlear claims> View Cochlear claims> similar
+CH> Operations> Views> Cochlear claims> View followup claims> similar
+
+Similar as above
+
+CH> Field Operations> Worklist> My cases> PHC Health camp for approval -H
+
+CH> Field Operations> View> Health Camps> View Health Camps
+Rejected by Head FO/JEO
+View PHS health Camps-M
+CH> Field Operations> View>Payroll> Dashboard- Need to chk
+
+CH> EDM> Worklist> My cases> Change Request- similar
+Addition of infrastructure - similar
+Consultant details of application form - not visible
+Medco details of Application form - not visible
+ 
+CH>EDM> Worklist> Views> Empanelment> Agenda list - Similar
+Physical MOU/SCA report- Similar
+Usage report - Similar
+MOU report - Similar
+Delisted/ Rejected Records - Similar
+Comparative MOU reports - Similar
+Explanation report -Similar
+Expertise details search - Similar
+Hospital wise MEDCO/AMCCO details - Similar
+MOUs/SCA to be executed by Trust/ Insurance - Similar
+
+CH> Finance> Worklist> Panel Doctor Payment -VVH
+
+CH> Grievance> Worklist>My cases> Grievance Worklist> Similar
+
+CH> Admin> Reports> Live Reports> Preauth Monitoring Report
+CH> Admin> Reports> Live Reports> Surgery Analysis Report
+Similar as Manager MIS
+CH> Admin> Masters> Hospital Master
+User Master
+Similar 
+CH> Admin> View>Misc>Others> Digital Sign -M
+
+PPD> CEO sent back list> - VL need to check
+
+Claim wise worklist - VH
+Total case worklist -VH
+
+PPD> Operations> worklist> My cases> Claims for approval
+Cochlear case for Approval
+Hemo dialysis cases for approval
+Cancer cases for Approval - need to check
+Thalasemis cases for Approval
+Claims Cases Sent back, Govt and Corp hospi all
+
+Similar as above
+
+PPD> Operations> View> Patients> Details Card search
+PPD> Operations> View> Details Out patients view
+PPD> Operations> View> Registered on bed patient
+PPD> Operations> View> Registered Cases view
+
+PPD> Operations> View> Patients> Cases> Case Search
+Cochlear cases
+View Flagged cases (new)
+Death cases view
+
+Follow up claims> View all followup claims
+
+PPD> EDM> Views> Empanelments> Hospital wise Medco/Amcco details
+My Cases > Change Request similar
+
+PPD> Finance> Claim> Panel doctor status report - L
+PPD> Admin> Reports> Report
+CH> Admin> View>Misc>Others> Digital Sign -M
+
+CPD>Operations> Worklist> My Cases> Claim Cases> Claim cases- Corp Hospital > In patient, One day care CEX Similar
+CPD>Operations> Worklist> My Cases> Claim Cases> Claim cases- Govt Hospital > In patient, One day care, short term
+
+CPD> Operations> Views> Patients> Telephonic Intimations
+CPD> Operations> Views> Patients> Deatails card search
+
+CPD> Operations> Views> Cases> Cases search
+CPD> Operations> Views> Cases> Initiate case
+
+CPD> EDM> Views>Empanelments> Hospital wise Medco/Amcco details
+CPD> Admin> View>Misc>Others> Digital Sign -M
+
+MC-ETC -- Landing is Cases for approval
+
+MCETC> Operations> worklist> My cases> Cases for Approval
+Hemo dialysis cases for approvalO> Patient, One day care, Short term
+MC-ETC> Opeartion> view> Patients> Telephonic Intimations
+Details Card search
+Cases - Case search
+MC-ETC> View>Misc>Others> Digital Sign -M
+
+PAO> CEO worklist menu>  Dashboard > Similar
+
+PAO> Operations> Worklist > Initiate Cases
+PAO> Operations> Worklist > My cases> Enhancement cases for approval, Preauth cases for approval, Cochlear cases for approval, Hemodialysis cases for approval, 
+PAO> Operations> Worklist > My cases>Panel doctor> Payments for Panel doctor -VH
+Panel doctor payment status -H
+Rejected Panel doctor payments details not visible -H
+
+PAO> Operations> Views> Patients>Telephonic intimations
+Details - card Search
+Details Death Case report -- need to check
+Details On bed patients
+Details Out patient view 
+Registered On bed patient-- need to check
+Registered cases view
+CMO non referred patients view
+CMO referred patients view
+PHC referred Patient view
+PHC referred Patient view
+Health camp Referred Patients
+Health camp Non Referred Patients
+
+Cases>  Case search, Cochlear claims, Hemo dialysis cases, View Flagged Cases (New), Detailed case view
+Card Search> similar
+Cochlear claims> similar
+Follow up claims> similar
+Payment status report - H
+
+PAO> Field Operations> Worklist> My cases> HC payments
+PAO> Field Operations> Worklist> My cases> Health Camp for approval
+PAO> Field Operations> Views>Health camps> View PHC health camps
+PAO> Field Operations> Views>Health camps>health camp details
+Rejected by Head FO/JEO
+HC Payment status - M
+PAO> Field Operations> Views>Health camps> Hospital schedule- M
+PAO> Field Operations> Views>PHC informations> Referred Patients View
+PAO> Field Operations> Views>PHC informations> Non Referred Patients View
+
+PAO> Field Operations> Views>Health camp information> Referred Patients View
+PAO> Field Operations> Views>Health camp information> Non Referred Patients View
+
+PAO> EDM>Worklist>My cases
+
+PAO> EDM>Views> Empanelments> Hospital empanelment view
+PAO> EDM>Views> Empanelments> Inclusion of Specialities view
+PAO> EDM>Views> Empanelments>Details/Rejected Records
+Explanation report
+Pharmacist Registration report
+Expertise Details search
+
+PAO> Finance> Worklist 
+PAO> Finance> View> TDS> TDS Exemption Search
+View Pay slips, Pay slips, Reports, Panel doctors
+
+PAO> Grievance> General Information View
+Grievance View
+Resolved grievance
+Closed grievance
+
+PAO> Admin>Worklist> Admin Sanction> Sanction Workflow -- VH, nOT VISISBLE
+View > Admin sanction view> Sanction view> VH 
+
+PAO> Reports> Live Reports> Attendance Report
+Surgery analysis report
+PAO> Admin> View>Misc>Others> Digital Sign -M
+
+PTD> Operations> worklist> My Cases> Cases for Approval> In patient, one day care
+Preauth Gynaecology cases for approval
+Covid 19 case for approval
+Hemo dialysis cases for approval
+Thalasemia cases for approval
+
+PTD> Operations>Views> Patients> Details card search 
+Deatils Out Patients Search
+Register On bed patient
+Registered case view
+
+Case ,Follow up
+
+Field operation> Views> View Health Camp
+Rejected by Head FO/JEO
+PTD> Admin> View>Misc>Others> Digital Sign -M
+
+HTC> Operations> Worklist> My cases> Cases for Approval> In patient, One day care, short term
+Claim cases> Claim cases corp hospital -- In patient, one day care, short term
+Claim cases> Claim cases govt hospital
+Claim cases> Medco not updated
+Claim cases> Sent Back
+
+Similar like claim case
+
+JEO CLAIMS>Operations> Worklist> My claims> Claims case> Govt and Corp Hospital all
+Similar like claim case
+JEO Cliams> Worklist> My cases
+
+CEO>Dashboard
+CEO > Operations> Worklist> Initiate cases
+CEO > Operations> Worklist> My cases> Enhancement cases for approval, Preauth cases for approval, Cochlear cases for approval, Hemo dialysis case for approval, 
+Panel doctor > Payments for Panel doctor, Panel doctor payment status, Rejected panel doctor payments details
+
+CEO> Operations> Views> Patients>Telephonic intimations
+Details - card Search
+Details Death Case report -- need to check
+Details On bed patients
+Details Out patient view 
+Registered On bed patient-- need to check
+Registered cases view
+CMO non referred patients view
+CMO referred patients view
+PHC referred Patient view
+PHC referred Patient view
+Health camp Referred Patients
+Health camp Non Referred Patients
+
+Cases>  Case search, Cochlear claims, Hemo dialysis cases, View Flagged Cases (New), Detailed case view
+
+Cochlear claims> View Cochlear claims
+Follow up claims> View all follow up claims
+Payment status report
+
+CEO> Field Operations> Worklist> My cases> HC Payments
+CEO> Field Operations> Worklist> My cases> Health camp for approval
+
+CEO> Field Operations> Views>Health camps> View PHC health camps
+CEO> Field Operations> Views>Health camps>health camp details
+Rejected by Head FO/JEO
+HC Payment status 
+CEO> Field Operations> Views>Health camps> Hospital schedule
+CEO> Field Operations> Views>PHC informations> Referred Patients View
+CEO> Field Operations> Views>PHC informations> Non Referred Patients View
+
+SIMILAR LIKE PAO
+
+CEO> View>Empanelments> Hospital empanelment view, Inclusion of specialities view, Delisted /rejected record, Explanation report, Pharmacist registration report, expertise details search
+CEO>Finance> Worklist> Budget - need to recheck
+My cases > TDS exemption request for approval - H
+Contra entry approval -M
+Vendor payment approval - M
+Trust Salaries Payment approval -M
+PLS recheck
+
+Finance > views> Panel doctor> Payments for Panel doctor, Panel doctor payment status, Rejected Panel doctor payments status 
+CEO>Grievance> Worklist> My cases
+CEO>Grievance> Worklist> Views> Grievance> General information view, Grievance Vew, Resolved Grievances, Closed Grievances
+
+CEO> Admin> View> Admin Sanctions> Sanction Workflow need to check
+CEO> Admin> Views> Admin sanction view> Sanction view > H
+CEO> Admin> Reports> Live Reports> Attendance Reports
+Surgery Analysis Report
+Masters need to check
+Misc> Digital sign
+
+
+AP_D089
+EPD > Operations> View> Cases Search - Already added above
+EPD > Field operations > No access
+
+EPD > EDM > Worklist > My Cases > Application from worklist - Already added above
+EPD > EDM > Worklist > My Cases > Inclusion of Specialties
+EPD > EDM > Worklist > My Cases > Consultant Details of Application form
+EPD > EDM > Worklist > My Cases > Expertise Cases
+EPD > EDM > Worklist > My Cases > Medco Details of Application form
+
+EPD > EDM > Views> Empanelments > View Mandatory Documents
+EPD > EDM > Views> Empanelments > Pendency Report
+EPD > EDM > Views> Empanelments > Expertise Cases
+EPD > EDM > Views> Empanelments > Expertise details search
+
+EPD > Finance > Views > View Pay slips , Payslips, reports - View Payslips
+
+EPD > Grievance > No access
+
+EPD > HR > No access
+
+EPD > Admin > Miscellaneous > Others > Digital Sign
+
+Inspection Team > Operations> No access
+
+Inspection Team > Field operations > No access
+
+Inspection Team > EDM > Worklist > My Cases > Application from worklist
+Inspection Team > EDM > Worklist > My Cases > Inclusion of Specialties
+
+Inspection Team > EDM > Views > Empanelments > Usage Report
+
+Inspection Team > Finance > No access
+
+Inspection Team > Grievance > No access
+
+Inspection Team > HR > No access
+
+Inspection Team > Admin > Miscellaneous > Others > Digital Sign
+
+MC-EC > Operations> View> Cases > Cases Search
+MC-EC > Operations> View> Cases > View Flagged Cases(New)
+MC-EC > Operations> View> Cases > Audited Cases View
+MC-EC > Operations> View> Cases > Audited Death Cases View
+MC-EC > Operations> View> Cases > Death Case Audit
+MC-EC > Operations> View> Cases > Sample Cases for Medical Audit
+
+
+MC-EC > Field operations > No access
+
+MC-EC > EDM > Worklist > My Cases > Application from worklist
+MC-EC > EDM > Worklist > My Cases > Inclusion of Specialties
+MC-EC > EDM > Worklist > My Cases > Change Requests
+MC-EC > EDM > Worklist > My Cases > Addition of Infrastructure
+MC-EC > EDM > Worklist > My Cases > Consultant Details of Application form
+MC-EC > EDM > Worklist > My Cases > Medco Details of Application form
+
+MC-EC > EDM > Views> Empanelments > Agenda List
+MC-EC > EDM > Views> Empanelments > Physical MOU/SCA Report
+MC-EC > EDM > Views> Empanelments > Inclusion of Specialties View
+MC-EC > EDM > Views> Empanelments > Usage Report
+MC-EC > EDM > Views> Empanelments > MOU's Report
+MC-EC > EDM > Views> Empanelments > Delisted/Rejected Records
+MC-EC > EDM > Views> Empanelments > Comparative MOU Report
+MC-EC > EDM > Views> Empanelments > Explanation Report
+MC-EC > EDM > Views> Empanelments > Expertise Details Search
+MC-EC > EDM > Views> Empanelments > Hospital -Wise Medco/Amcco Details
+MC-EC > EDM > Views> Empanelments > MOUs/SCA to be executed by Trust/Insurance
+
+MC-EC > EDM > Dashboard > Empanelment Dashboard
+
+MC-EC > Finance > Views > View Pay slips , Payslips, reports - View Payslips
+
+MC-EC > Grievance > Worklist > My cases > Grievance worklist
+
+MC-EC > Grievance > Views > Grievance> General Information View
+MC-EC > Grievance > Views > Grievance> Grievance view
+MC-EC > Grievance > Views > Grievance> Closed Grievances
+MC-EC > Grievance > Views > Grievance> Grievance Reports
+
+MC-EC > HR > No access
+
+MC-EC > Admin > Masters> Hospital Master
+
+MC-EC > Admin > Miscellaneous > Others > Digital Sign
+
+CMA > Operations > Worklist > DCT view - not opening 
+CMA > Operations > Worklist > My Cases - not opening 
+
+CMA > Operations > Views > Patients > Details- Card Search
+
+CMA > Operations> Views > Cases > Cases Search
+CMA > Operations> Views > Cases > Death Cases View
+CMA > Operations> Views > Cases > Audited Cases View
+CMA > Operations> Views > Cases > Audited Death Cases View
+CMA > Operations> Views > Cases > Death Case Audit
+CMA > Operations> Views > Cases > Sample Cases for Medical Audit
+CMA > Operations > Views > FollowUp Claims - no access
+
+CMA > Field Operations > Views > PHC Information 
+CMA > Field Operations > Views > HealthCamp Information 
+
+CMA > EDM > Worklist > My Cases > Not opening 
+CMA > EDM > Views> Empanelments > Not opening 
+CMA > EDM > Views> Dashboard> Not opening
+
+
+CMA > Finance > Views > View Pay slips , Payslips, reports - View Payslips
+
+CMA > Grievance> No access
+
+CMA > HR > No access 
+
+CMA > Admin > Reports> Live Reports- not opening
+CMA > Admin > Masters> Masters - no access
+CMA > Admin > Miscellaneous > Others - no access
+
+EO EMP > Operations> Worklist > DCT View > DCT Report
+EO EMP > Operations> Worklist > My Cases >  Cases for Approval > In patient
+EO EMP > Operations> Worklist > My Cases >  Cases for Approval > One Day Care
+EO EMP > Operations> Worklist > My Cases >  Cases for Approval > Short Term
+EO EMP > Operations> Worklist > My Cases > Enhancement Cases for Approval
+EO EMP > Operations> Worklist > My Cases > Cochlear Cases for Approval
+EO EMP > Operations> Worklist > My Cases > Hemo dialysis Cases for Approval
+EO EMP > Operations> Worklist > My Cases > Cases for Discussion
+
+EO EMP > Operations > Views > Patients> Details - Out Patients View
+EO EMP > Operations > Views > Patients> Registered - on bed patient
+EO EMP > Operations > Views > Patients> Registered cases view
+EO EMP > Operations > Views > Patients> CMO non referred patients view
+EO EMP > Operations > Views > Patients> CMO referred patients view
+
+EO EMP > Operations > Views > Cases > View Flagged Cases(New)
+EO EMP > Operations > Views > Followup claims > View All Followup claims
+
+--------- from here 
+EO EMP > Field Operations >
+
+
+
