@@ -1,0 +1,71 @@
+SELECT DISTINCT
+    b.dis_main_id AS specialty_id,
+    b.dis_main_name AS specialty_name,
+    a.surgery_id AS procedure_code,
+    a.surgery_desc AS procedure,
+    nvl(hosp_stay_amt,0) + nvl(common_surgery_amt,0) + nvl(buffer_amt,0) + nvl(ppe_amount,0) AS package_amount,
+    preinvest.details preinvestigations,
+    postinvest.details postinvestigations,
+    medinvest.details medinvestigations
+FROM
+    asrim_surgery a,
+    asrim_disease_main b,
+    asrim_disease_sub c,
+    (
+        SELECT
+            surgery_id,
+            dstring_agg(invest_desc) AS details
+        FROM
+            asrim_surgery_invest_ap asi
+        WHERE
+            asi.active_yn (+) = 'Y'
+            AND   upper(asi.pre_or_post_op) IN (
+                'PRE'
+            )
+        GROUP BY
+            surgery_id
+    ) preinvest,
+    (
+        SELECT
+            surgery_id,
+            dstring_agg(invest_desc) AS details
+        FROM
+            asrim_surgery_invest_ap asi
+        WHERE
+            asi.active_yn (+) = 'Y'
+            AND   upper(asi.pre_or_post_op) IN (
+                'POST'
+            )
+        GROUP BY
+            surgery_id
+    ) postinvest,
+    (
+        SELECT
+            surgery_id,
+            dstring_agg(invest_desc) AS details
+        FROM
+            asrim_surgery_invest_ap asi
+        WHERE
+            asi.active_yn (+) = 'Y'
+            AND   upper(asi.pre_or_post_op) IN (
+                'MED'
+            )
+        GROUP BY
+            surgery_id
+    ) medinvest
+WHERE
+    a.active_yn = 'Y'
+    AND   state_flag IN (
+        'AP',
+        'N',
+        'BOTH'
+    )
+    AND   hosp_stay_amt IS NOT NULL
+  --AND   surgery_id = 'M14.1.3'
+    AND   a.dis_main_id = b.dis_main_id
+    AND   b.dis_active_yn = 'Y'
+    AND   a.dis_main_id = c.dis_main_id
+    AND   a.dis_sub_id = c.dis_sub_id
+    AND   preinvest.surgery_id (+) = a.surgery_id
+    AND   postinvest.surgery_id (+) = a.surgery_id
+    AND   medinvest.surgery_id (+) = a.surgery_id;
