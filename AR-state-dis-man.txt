@@ -1,0 +1,197 @@
+   
+    @GetMapping("/ASRI-statelist")
+	public ApiResponse<?> displayStatelist() {
+
+		try {
+
+			List<StateListResult> results = pubServ.displayStatelist();
+			if (results.size() > 0) {
+				JSONArray jsonData = new JSONArray();
+	            for(StateListResult position: results){
+	            	JSONArray jsonArray = new JSONArray();
+	                jsonArray.put(position.getStateId());
+	                jsonArray.put(position.getStateName());
+	                jsonData.put(jsonArray);
+	            }
+	            return new ApiResponse<>(true,"Search result found", jsonData.toString());
+	            
+				//return new ApiResponse2<>(true, "Search Results found.", results);
+	            
+			} else {
+				return new ApiResponse<>(false, "Search Results Not found.", null);
+			}
+
+		} catch (Exception ex) {
+			return new ApiResponse<>(eService.reportError(ex));
+		}
+	}
+
+    
+    @PostMapping("/ASRI-districtlist")
+	public ApiResponse<?> displayDistrictlist(@RequestBody AdvanceDistrictList request) {
+
+		try {
+
+			List<DistrictListResult> results = pubServ.displayDistrictlist(request);
+			if (results.size() > 0) {
+				JSONArray jsonData = new JSONArray();
+	            for(DistrictListResult position: results){
+	            	JSONArray jsonArray = new JSONArray();
+	                jsonArray.put(position.getStateId());
+	                jsonArray.put(position.getStateName());
+	                jsonArray.put(position.getDistrictId());
+	                jsonArray.put(position.getDistrictName());
+	                jsonData.put(jsonArray);
+	            }
+	            return new ApiResponse<>(true,"Search result found", jsonData.toString());
+	           // return new ApiResponse<>(true,"Search result found", results);
+			} else {
+				return new ApiResponse<>(false, "Search Results Not found.", null);
+			}
+
+		} catch (Exception ex) {
+			return new ApiResponse<>(eService.reportError(ex));
+		}
+	}
+
+    @PostMapping("/ASRI-mandallist")
+   	public ApiResponse<?> displayMandallist(@RequestBody AdvanceMandalList request) {
+
+   		try {
+
+   			List<MandalListResult> results = pubServ.displayMandallist(request);
+   			if (results.size() > 0) {
+   				JSONArray jsonData = new JSONArray();
+   	            for(MandalListResult position: results){
+   	            	JSONArray jsonArray = new JSONArray();
+   	                jsonArray.put(position.getStateId());
+   	                jsonArray.put(position.getDistrictId());
+   	                jsonArray.put(position.getMandalId());
+   	                jsonArray.put(position.getMandalName());
+   	                jsonArray.put(position.getMandalCode());
+   	                jsonData.put(jsonArray);
+   	            }
+   	            return new ApiResponse<>(true,"Search result found", jsonData.toString());
+   	           // return new ApiResponse<>(true,"Search result found", results);
+   			} else {
+   				return new ApiResponse<>(false, "Search Results Not found.", null);
+   			}
+
+   		} catch (Exception ex) {
+   			return new ApiResponse<>(eService.reportError(ex));
+   		}
+   	}
+
+    
+    
+***************************************
+	
+	@SuppressWarnings("unchecked")
+	public List<StateListResult> displayStatelist() {
+
+		String nativeQuery = "SELECT DISTINCT LOC_STATE_VAL as stateId,\n"
+				+ "DECODE(LOC_STATE_VAL, '6', 'ANDHRA PRADESH',\n"
+				+ "                    '7', 'TELANGANA',\n"
+				+ "                    '8', 'KARNATAKA', \n"
+				+ "                    '9', 'TAMIL NADU',\n"
+				+ "                    NULL) stateName\n"
+				+ "FROM ASRIM_LOCATIONS WHERE LOC_STATE_VAL IS NOT NULL";
+		Query query = em.createNativeQuery(nativeQuery, StateListResult.class);
+		List<StateListResult> searchResults = query.getResultList();
+		return searchResults;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DistrictListResult> displayDistrictlist(AdvanceDistrictList request) {
+
+		String nativeQuery ="select * from (\n"
+				+ "SELECT DISTINCT  LOC_STATE_VAL AS stateId, \n"
+				+ "DECODE(LOC_STATE_VAL, '6', 'ANDHRA PRADESH',\n"
+				+ "                    '7', 'TELANGANA',\n"
+				+ "                    '8', 'KARNATAKA',  \n"
+				+ "                    '9', 'TAMIL NADU',\n"
+				+ "                    NULL) stateName,\n"
+				+ "                    LOC_ID AS districtId, \n"
+				+ "                    AL.LOC_NAME AS districtName \n"
+				+ "                    FROM ASRIM_HOSPITALS AH, ASRIM_LOCATIONS AL\n"
+				+ "WHERE ISACTIVE_AP='Y'   \n"
+				+ "AND AH.DIST_ID = AL.LOC_ID \n"
+				+ "AND  AL.LOC_HDR_ID='LH6' \n"
+				+ "AND LOC_STATE_VAL IN (\n"
+				+ "SELECT DISTINCT LOC_STATE_VAL \n"
+				+ "FROM ASRIM_LOCATIONS\n"
+				+ ") \n"
+				+ "order by LOC_STATE_VAL\n"
+				+ ")\n";
+				
+			if(request.getStateId() != null)
+					nativeQuery = nativeQuery + " where stateId='"+request.getStateId()+"'";
+
+//		Query query = em.createNativeQuery(nativeQuery, DistrictListResult.class);
+//		List<DistrictListResult> searchResults = query.getResultList();
+			Query query = em.createNativeQuery(nativeQuery);
+			List<Object[]> searchResults=query.getResultList();
+			List<DistrictListResult> searchResults1 = new ArrayList<>();
+			for(int i=0;i<searchResults.size();i++)
+			{
+				DistrictListResult res=new DistrictListResult();
+				if(null != searchResults.get(i)[0]) {
+				res.setStateId(searchResults.get(i)[0].toString());}
+				if(null != searchResults.get(i)[1]) {
+				res.setStateName(searchResults.get(i)[1].toString());}
+				if(null != searchResults.get(i)[2]) {
+				res.setDistrictId(searchResults.get(i)[2].toString());}
+				if(null != searchResults.get(i)[3]) {
+				res.setDistrictName(searchResults.get(i)[3].toString());}
+				searchResults1.add(res);
+			}
+			return searchResults1;
+
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<MandalListResult> displayMandallist(AdvanceMandalList request) {
+
+		String nativeQuery ="select * from(\n"
+				+ "SELECT DISTINCT AL1.LOC_STATE_VAL AS stateId, \n"
+				+ "AL.LOC_PARNT_ID AS districtId,\n"
+				+ "AL.LOC_ID AS MandalId, \n"
+				+ "AL.LOC_NAME AS MandalName,\n"
+				+ "AL.LOC_HDR_ID AS MandalCode \n"
+				+ "FROM ASRIM_HOSPITALS AH, ASRIM_LOCATIONS AL\n"
+				+ "LEFT OUTER JOIN ASRIM_LOCATIONS AL1 ON \n"
+				+ "(AL1.LOC_ID = AL.LOC_PARNT_ID)\n"
+				+ "WHERE AH.ISACTIVE_AP='Y'\n"
+				+ "AND AL.LOC_HDR_ID='LH7'\n"
+				+ "AND AH.DIST_ID= AL.LOC_PARNT_ID\n"
+				+ "ORDER BY AL.LOC_PARNT_ID\n"
+				+ ")\n";
+				
+			if(request.getDistrictId() != null)
+					nativeQuery = nativeQuery + " where districtId='"+request.getDistrictId()+"'";
+
+//		Query query = em.createNativeQuery(nativeQuery, DistrictListResult.class);
+//		List<DistrictListResult> searchResults = query.getResultList();
+			Query query = em.createNativeQuery(nativeQuery);
+			List<Object[]> searchResults=query.getResultList();
+			List<MandalListResult> searchResults1 = new ArrayList<>();
+			for(int i=0;i<searchResults.size();i++)
+			{
+				MandalListResult res=new MandalListResult();
+				if(null != searchResults.get(i)[0]) {
+				res.setStateId(searchResults.get(i)[0].toString());}
+				if(null != searchResults.get(i)[1]) {
+				res.setDistrictId(searchResults.get(i)[1].toString());}
+				if(null != searchResults.get(i)[2]) {
+				res.setMandalId(searchResults.get(i)[2].toString());}
+				if(null != searchResults.get(i)[3]) {
+				res.setMandalName(searchResults.get(i)[3].toString());}
+				if(null != searchResults.get(i)[4]) {
+					res.setMandalCode(searchResults.get(i)[4].toString());}
+				searchResults1.add(res);
+			}
+			return searchResults1;
+
+	}
+
