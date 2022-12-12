@@ -1,0 +1,33 @@
+
+1.localhost:8092/portalsearchapi/public-ar/searchHospital   - POST
+{
+    "districtid":"03",
+}
+
+2. localhost:8092/portalsearchapi/public-ar/searchprocedure    - POST
+
+{
+    "surgeryid":"M1.8"
+}
+
+3.localhost:8092/portalsearchapi/public-ar/hospital-statewisecount   - GET
+4.localhost:8092/portalsearchapi/public-ar/hospital-districtwisecount   -POST
+{
+"stateVal":"6"
+}
+5.localhost:8092/portalsearchapi/public-ar/specialitysearchcount   - POST
+{
+    "specialityId":"S7"
+}
+
+6.localhost:8092/portalsearchapi/public-ar/statelist   - GET
+7.localhost:8092/portalsearchapi/public-ar/districtlist    - POST
+{
+    "stateid":"6"
+}
+
+8.localhost:8092/portalsearchapi/public-ar/mandallist   - POST
+{
+    "districtid":"01"
+}
+
