@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "c23710df-cd5b-428d-88c3-29c548292899",
+		"name": "OLD AISMR-TO ADD REGN and send Email",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UAT",
+			"item": [
+				{
+					"name": "PhcLoginToken",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ysrahct",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "ysrahct",
+									"type": "string"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userName",
+									"value": "YSRAHCT_GUEST",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "WSRSQGhDdEAxMjM=",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://uat.ysraarogyasri.ap.gov.in/YSRRestServices/login/getAccessToken",
+							"protocol": "https",
+							"host": [
+								"uat",
+								"ysraarogyasri",
+								"ap",
+								"gov",
+								"in"
+							],
+							"path": [
+								"YSRRestServices",
+								"login",
+								"getAccessToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8082/YSRRestServices/aismr/save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJZU1JBSENUX0dVRVNUIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiZXhwIjoxNjc1MzM0MjkzLCJ1c2VySWQiOiJZU1JBSENUX0dVRVNUIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjExNDA4NWRkLWRkZDMtNGY4My1iNDhhLWIyNTRmZmQyZWQyNiIsImNsaWVudF9pZCI6InlzcmFoY3QtY2xpZW50In0.zDNSGA4lEJsYT1tXKn1btjIKM1ynt13xYAzqtx50xFY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"empId\": \"78987\",\r\n\r\n  \"patientName\": \"Raja Ram Mohan Roy\",\r\n\r\n  \"locNumber\": \"890700\",\r\n\r\n  \"patientAge\": \"30\",\r\n\r\n  \"patientGender\": \"M\",\r\n\r\n  \"patientRelation\": \"1\",\r\n\r\n  \"nwh\": \"N\",\r\n\r\n  \"hospitalState\": \"ANDRAPRADESH\",\r\n\r\n  \"hospitalDistrict\": \"GUNTUR\",\r\n\r\n  \"hospitalName\": \"Govt general hospital\",\r\n\r\n  \"contact_No\": \"9109876545\",\r\n\r\n  \"treatmentDescription\": \"description\",\r\n\r\n  \"locAmount\": \"1223\",\r\n\r\n  \"locPhoto\": \"<LOC_PHOTO_URL>\",\r\n\r\n  \"photo\": \"<PATIENT_PHOTO_URL>\",\r\n\r\n  \"employeeName\": \"Shyam S\",\r\n\r\n  \"employeeDesignation\": \"SOFTWARE ENGINEER\",\r\n\r\n  \"departmentName\": \"IT\",\r\n\r\n  \"placeOfWork\": \"BANGLORE\",\r\n\r\n  \"placeOfDistrict\": \"HASSAN\",\r\n\r\n  \"patientDOB\": \"2022-02-22\",\r\n\r\n  \"employeeState\": \"KARNATAKA\",\r\n\r\n  \"hospitalContactNumber\": \"8899009999\",\r\n\r\n  \"hospitalMailId\": \"dhirendrasingh@gmail.com\",\r\n\r\n  \"hospitalAddress\": \"Raipur\",\r\n\r\n  \"estimationCopy\": \"estimation copy\",\r\n\r\n  \"hospId\": \"HS121\",\r\n\r\n  \"dateOfRegistration\": \"2022-02-22\",\r\n\r\n    \"isHospitalReg\": \"N\",\r\n\r\n  \"hospitslRegId\": null\r\n\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://uat.ysraarogyasri.ap.gov.in/YSRRestServices/aismr/save",
+							"protocol": "https",
+							"host": [
+								"uat",
+								"ysraarogyasri",
+								"ap",
+								"gov",
+								"in"
+							],
+							"path": [
+								"YSRRestServices",
+								"aismr",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PhcLoginToken",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ysrahct",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ysrahct",
+							"type": "string"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userName",
+							"value": "YSRAHCT_GUEST",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "WSRSQGhDdEAxMjM=",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8082/YSRRestServices/login/getAccessToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"YSRRestServices",
+						"login",
+						"getAccessToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/YSRRestServices/aismr/save",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJZU1JBSENUX0dVRVNUIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiZXhwIjoxNjc1NzUzNTE4LCJ1c2VySWQiOiJZU1JBSENUX0dVRVNUIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjI3YjdjNzdlLTViZjAtNGExZC05MGE0LWJjNTdhNmZmNDQzNSIsImNsaWVudF9pZCI6InlzcmFoY3QtY2xpZW50In0.algrpslNYmidytGM71REcI4SAj3ek4sUztpAAbO6vUg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"empId\": \"900\",\r\n\r\n  \"patientName\": \"Hitler Kumar\",\r\n\r\n  \"locNumber\": \"70090\",\r\n\r\n  \"patientAge\": \"45\",\r\n\r\n  \"patientGender\": \"M\",\r\n\r\n  \"patientRelation\": \"1\",\r\n\r\n  \"nwh\": \"N\",\r\n\r\n  \"hospitalState\": \"ANDRAPRADESH\",\r\n\r\n  \"hospitalDistrict\": \"GUNTUR\",\r\n\r\n  \"hospitalName\": \"Govt general hospital\",\r\n\r\n  \"contact_No\": \"9000000000\",\r\n\r\n  \"treatmentDescription\": \"description\",\r\n\r\n  \"locAmount\": \"1223\",\r\n\r\n  \"locPhoto\": \"<LOC_PHOTO_URL>\",\r\n\r\n  \"photo\": \"<PATIENT_PHOTO_URL>\",\r\n\r\n  \"employeeName\": \"D Singh\",\r\n\r\n  \"employeeDesignation\": \"SOFTWARE ENGINEER\",\r\n\r\n  \"departmentName\": \"IT\",\r\n\r\n  \"placeOfWork\": \"BANGLORE\",\r\n\r\n  \"placeOfDistrict\": \"HASSAN\",\r\n\r\n  \"patientDOB\": \"2022-02-22\",\r\n\r\n  \"employeeState\": \"KARNATAKA\",\r\n\r\n  \"hospitalContactNumber\": \"9876545678\",\r\n\r\n  \"hospitalMailId\":\"dhirendrasingh@kpmg.com\",\r\n\r\n  \"hospitalAddress\": \"Raipur\",\r\n\r\n  \"estimationCopy\": \"estimation copy\",\r\n\r\n  \"hospId\": null,\r\n\r\n  \"dateOfRegistration\": \"2022-02-22\",\r\n\r\n    \"isHospitalReg\": \"N\",\r\n\r\n  \"hospitslRegId\": null\r\n\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/YSRRestServices/aismr/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"YSRRestServices",
+						"aismr",
+						"save"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
