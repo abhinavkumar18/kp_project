@@ -218,7 +218,7 @@
 //      </>
 //   );
 // }
-import * as React from 'react';
+import React,{useEffect, useState,props} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -314,12 +314,28 @@ export default function VerticalTabs() {
  }
 
 //  const [showPage, setshowPage] = React.useState();
-
+// for Inbox
+// const [isShown, setIsShown] = useState(false);
+// const handleClick = event => {
+//         setIsShown(current => !current);
+//       };
+      const [showFirst, setShowFirst] = useState(false);
+      useEffect(()=>{
+        setShowFirst(true)
+       // setActive(true)
+      },[]);
+      // for search Ais case
+      // const [isShown1, setIsShown1] = useState(false);
+      // const handleClick1 = event => {
+      //   setIsShown1(current => !current);
+      // };
+      const [showSecond, setShowSecond] = useState(false);
 
   return (
-    
-    // <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-    <div className='d-flex' id='wrapper' style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+     <>
+     <Header/>
+    {/* <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}> */}
+    <div className='d-flex' id='wrapper' style={{ display: 'flex',height: '80vh',overflow: 'none'}}> 
       <div className='border-end bg-white' id='sidebar-wrapper'>
       {/* <Grid container> */}
       {/* value={value}
@@ -328,26 +344,26 @@ export default function VerticalTabs() {
       <CDBSidebar textColor="#fff" backgroundColor="#1e90ff">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a value={value}
-        onChange={handleChange}href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+        href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
             MENU
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu >
-
-            <NavLink  exact to="/search" activeClassName="activeClicked">
-              <CDBSidebarMenuItem style={{fontWeight: 'bold'}} icon="inbox">INBOX </CDBSidebarMenuItem>
-               
+            <NavLink  onClick={() => {
+                      setShowFirst(true);
+                      setShowSecond(false);
+                    }} activeClassName="activeClicked">
+              <CDBSidebarMenuItem style={{fontWeight: 'bold'}} icon="inbox">INBOX </CDBSidebarMenuItem>    
             </NavLink>
-            {/* <NavLink exact to="/tables" activeClassName="activeClicked"> */}
+            <NavLink onClick={() => {
+                      setShowSecond(true);
+                      setShowFirst(false);
+                    }} activeClassName="activeClicked">
               <CDBSidebarMenuItem style={{fontWeight: 'bold'}} icon="search">SEARCH AIS</CDBSidebarMenuItem>
-            {/* </NavLink> */}
+            </NavLink>
             <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem sx={{ fontWeight: 'bold',background:'rgb(215,235,255)','&:hover': {
-          backgroundColor: 'primary.main',
-          opacity: [0.9, 0.8, 0.7],
-          color:'#fff', 
-        }, }}
+              <CDBSidebarMenuItem 
         style={{fontWeight: 'bold'}} icon="user">LOGOUT</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
@@ -396,14 +412,27 @@ export default function VerticalTabs() {
       <div id='page-content-wrapper'>
       <Grid item md={10}>
       <TabPanel value={value} index={0}>
-        {/* <InboxSearch/> */}
+        {
+                showFirst && (
+                        <InboxSearch />
+                )
+}
+            {
+                showSecond && (
+                  
+                  <AisSearch/>
+                  
+                )
+            }
       </TabPanel>
+      </Grid>
+      <Grid item md={10}>
       <TabPanel value={value} index={1}>
-        <AisSearch/>
       </TabPanel>
       </Grid>
       </div>
-    </div>
+      </div>
+      <Footer/>  
+      </>
   );
 }
-
