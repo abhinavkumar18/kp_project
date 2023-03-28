@@ -1,0 +1,579 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import one from "../assets/images/1.png";
+import two from "../assets/images/2.png";
+import three from "../assets/images/3.png";
+import { useTheme } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import { bgcolor } from '@mui/system';
+import SelectWrapper from '../components/SelectField';
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
+import LooksTwoOutlinedIcon from '@mui/icons-material/LooksTwoOutlined';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form } from "formik";
+import { Component } from 'react';
+import Countdown from "react-countdown";
+import { getDesignation } from '../redux/actions/DesignationDropAction';
+import { useEffect, useState } from 'react';
+import { createTheme, makeStyles, ThemeProvider } from '@mui/material/styles'
+//import PasswordChecklist from "react-password-checklist"
+import TextFields from '../components/textField';
+import { sendOTP } from '../redux/actions/SendOTPAction';
+import { validateOTP } from '../redux/actions/ValidateOTPAction';
+import { updatepass } from '../redux/actions/UpdatePassAction';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import Stack from '@mui/material/Stack';
+const steps = ['Instructions', 'Step 1', 'Step 2', 'Step 3'];
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  textColor: '#fff',
+  color: theme.palette.text.secondary,
+  borderRadius: '5px',
+}));
+export default function HorizontalLinearStepper() {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
+
+  const isStepOptional = (step) => {
+    return step === 1;
+  };
+
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  const sendotp = () => {
+    let payload = {
+      "role": String(roleid),
+      "userId": String(useridvalue)
+    }
+    dispatch(sendOTP(payload));
+  }
+  const validateotp = () => {
+    let payload = {
+      "userId": String(useridvalue),
+      "otp": String(otpvalue)
+    }
+    dispatch(validateOTP(payload));
+
+  }
+
+  const reloadColor = { color: "#1976d2", display: 'flex' };
+  var isCaptcha = false;
+
+  const LOGIN_FORM_VALIDATION = Yup.object().shape({
+
+    user_captcha_input: Yup.string().required('Required'),
+  });
+  //Captcha Validation
+  function doSubmit() {
+    let user_captcha = document.getElementById('user_captcha_input').value;
+
+    if (validateCaptcha(user_captcha) === true) {
+      isCaptcha = true;
+      console.log("SET CAPTCHA TO 1 ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", isCaptcha);
+      document.getElementById('user_captcha_input').value = "";
+    }
+
+    else {
+      alert('Captcha Does Not Match');
+      isCaptcha = false;
+      document.getElementById('user_captcha_input').value = "";
+
+    }
+  };
+
+  class Captcha extends Component {
+
+    componentDidMount() {
+      loadCaptchaEnginge(6);
+    };
+    render() {
+
+      return (<div>
+
+        <div className="form-group">
+
+          <div className="col mt-3">
+            < LoadCanvasTemplate sx={{ display: "flex" }} style={reloadColor} />
+
+            <div> <br></br>
+              <TextField
+                label="Enter Captcha"
+                id="user_captcha_input"
+                defaultValue=""
+                variant="filled"
+                size="small"
+              />
+              {/* <input placeholder="Enter Captcha Value" id="user_captcha_input" name="user_captcha_input" type="text" style={{setHeight}}></input> */}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>);
+    };
+  }
+  const [roleid, setroleid] = useState("");
+  const [useridvalue, setuseridvalue] = useState("");
+  const dispatch = useDispatch();
+  const [otpvalue, setotpvalue] = useState("");
+  const [newpass, setnewpass] = useState("");
+  const [confirmpass, setconfirmpass] = useState("");
+  const validationSchema = yup.object().shape({
+
+    Password: yup.string()
+      .required("Password required")
+      .min(8, "Please refer Password Policy")
+      .max(24, "Please refer Password Policy")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\^\*])(?!.*[ " $ & ' ( ) ; `%])/,
+        "Please refer Password Policy")
+
+    ,
+
+    ConfirmPassword: yup.string()
+      .oneOf([yup.ref('Password')], "Password must match")
+      .required('Confirm Password'),
+
+    Otp: yup.string()
+      .required("Otp required")
+      .matches(/^[0-9]+$/, "Must be only digits"),
+    Userid: yup.string()
+      .required("UserID required"),
+    loginas: yup.string().required("required")
+
+      .label("Login as"),
+
+  });
+
+  const { register,
+    control,
+    handleSubmit,
+    formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
+    const onSubmit = (data) => {
+      console.log(JSON.stringify(data));
+      alert(JSON.stringify(data));
+      handleNext();
+    };
+
+  const designationDrop = [];
+  const dataresult = useSelector((state) => state.DesignationDropReducer);
+  console.log(dataresult);
+  if (Object.keys(dataresult.data).length != 0) {
+    designationDrop.push(dataresult.data.result[0].employeeTypeName);
+    // console.log(dataresult.data.result[0].employeeTypeName);
+    designationDrop.push(dataresult.data.result[1].employeeTypeName);
+    designationDrop.push(dataresult.data.result[2].employeeTypeName);
+    designationDrop.push(dataresult.data.result[3].employeeTypeName);
+    designationDrop.push(dataresult.data.result[4].employeeTypeName);
+    console.log(designationDrop);
+  }
+
+  useEffect(() => {
+    dispatch(getDesignation());
+  }, [dispatch]);
+  const handleChange1 = evt => {
+    const { value } = evt.target;
+    console.log("Event target : ", value);
+    setroleid(evt.target);
+    console.log(roleid);
+  }
+  const Completionist = () => <span sx={{ backgroundColor: '#FF0000' }}>Timed out!!</span>;
+  const updatepasse = () => {
+    let payload = {
+      "role": String(roleid),
+      "userId": String(useridvalue),
+      "newPassword": String(newpass)
+    }
+    dispatch(updatepass(payload));
+  }
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return <span>{minutes}:{seconds}</span>;
+    }
+  };
+
+  return (
+    <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+      <CardContent>
+        <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+          <CardContent>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box sx={{ width: '100%' }}>
+                <Grid container spacing={10} >
+                  <Grid item xs={15} >
+                    <Item sx={{ margin: "auto", backgroundColor: '#4054b4', fontWeight: 'Bold', fontSize: 18, color: 'white', borderRadius: '2px' }}>FORGOT PASSWORD</Item>
+                  </Grid>
+                </Grid>
+                <br></br><br></br>
+                <Card className="Searchcard" sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+                  <CardContent>
+                    <Stepper sx={{ "& .MuiStepIcon-completed": { color: "green" }, }} activeStep={activeStep}>
+                      {steps.map((label, index) => {
+                        const stepProps = {};
+                        const labelProps = {};
+
+                        if (isStepSkipped(index)) {
+                          stepProps.completed = false;
+                        }
+                        return (
+                          <Step sx={{
+                            '& .MuiStepLabel-root .Mui-completed': {
+                              color: 'green', // circle color (COMPLETED)
+                            },
+
+                          }} key={label} {...stepProps}>
+                            <StepLabel {...labelProps}>{label}</StepLabel>
+                          </Step>
+                        );
+                      })}
+                    </Stepper>
+                    {activeStep === steps.length - 1 ? (
+                      <React.Fragment>
+                        <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+                          <CardContent>
+                            <br></br>
+
+                            <Card className="Searchcard" sx={{ borderRadius: '5px' }}>
+                              <CardContent>
+
+                                <Grid item xs={12} >
+                                  <Item sx={{ backgroundColor: '#3f51b5', color: '#FFFFFF', textAlign: 'left', fontSize: 18, display: 'flex' }}>
+                                    <img src={three} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} />  &nbsp;&nbsp;
+                                    <Typography style={{ fontWeight: 10, marginTop: 4, marginLeft: 1 }}>Reset Password</Typography>
+                                  </Item>
+                                </Grid> <br></br>
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                      <Card className="Searchcard" sx={{ maxWidth: 900}}>
+                                        <CardContent>
+                                <Grid sx={{ flexGrow: 1 }} container spacing={1} justifyContent="center">
+                                    <h3>Reset Password</h3>
+                                </Grid>
+                                <Grid sx={{ display: 'flex' }} container spacing={2} justifyContent="center">
+                                    <h5 style={{ color: '#FF0000' }}>Your OTP is verified successfully. Please fill the below details to reset your password.</h5>
+                                </Grid>
+                                <Grid sx={{ flexGrow: 0.6 }} container spacing={2} justifyContent="center">
+                                  <Grid container item xs={6} >
+                                    <TextField
+                                      sx={{ width: '65ch', marginLeft: 5, marginBottom: 7, height: 3 }}
+                                      name="Password"
+                                      label="New Password"
+                                      required
+                                      {...register("Password")}
+                                      error={errors.Password ? true : false}
+                                      size="small"
+                                      onChange={(e) => {
+                                        setnewpass(e.target.value)
+                                        console.log(newpass);
+                                      }}
+                                    />
+
+                                    {errors.Password?.message}
+                                  </Grid>
+                                </Grid>
+                                <Grid sx={{ flexGrow: 0.5 }} container spacing={2} justifyContent="center">
+                                  <Grid container item xs={6} >
+                                    <TextField
+                                    sx={{ width: '65ch', marginLeft: 5, marginBottom: 7, height: 3 }}
+                                    label="Confirm New Password"
+                                      name="ConfirmPassword"
+                                      {...register("ConfirmPassword")}
+
+                                      required
+                                      error={errors.ConfirmPassword ? true : false}
+                                      size="small"
+                                      onChange={(e) => {
+                                        setconfirmpass(e.target.value)
+                                        console.log(confirmpass);
+                                      }}
+                                    />
+                                    {errors.ConfirmPassword?.message}
+                                  </Grid>
+                                </Grid>
+                                <Stack direction="row" sx={{display:'flex',justifyContent:'center'}}>
+                                  <Button type="submit" sx={{borderRadius: '5px' }} variant="contained" disableElevation onClick={()=>{handleSubmit(onSubmit);updatepasse();}}>
+                                    Update
+                                  </Button> &nbsp; &nbsp;
+                                  <Button type="submit" sx={{ borderRadius: '5px' }} variant="contained" disableElevation>
+                                    Close
+                                  </Button>
+                                  </Stack>
+                                
+                                </CardContent></Card> </div> <br></br>
+                                <Box sx={{display:'flex',justifyContent:'center'}}>
+                                 
+                                    <Typography sx={{fontSize:12}}>
+                                    <Typography sx={{fontSize:12,fontWeight:'bold'}}>
+                                    Password Policy :  <br></br>
+                                    </Typography>
+                                    1. Passwords must be minimum 8 characters and maximum 24 characters in length.<br />
+                                    2. Passwords must contain both uppercase and lowercase characters (e.g., a-z and A-Z).<br />
+                                    3. Passwords must contain at least one number (e.g., 0-9).<br />
+                                    4. Passwords must contain at least one special characters. Excluded special characters " $ & ' ( ) ; `and space.<br />
+                                    </Typography>
+                                </Box>
+                              </CardContent></Card></CardContent></Card>
+                      </React.Fragment>
+                    ) :
+                      activeStep === steps.length - 2 ? (
+                        <React.Fragment>
+
+                          <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+                            <CardContent>
+                              <br></br>
+
+                              <Card className="Searchcard" sx={{ borderRadius: '5px' }}>
+                                <CardContent>
+
+                                  <Grid item xs={12} >
+                                    <Item sx={{ color: '#FFFFFF', backgroundColor: '#3f51b5', textAlign: 'left', fontSize: 18, display: 'flex' }}>
+                                      <img src={two} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} /> &nbsp;&nbsp;
+                                      <Typography style={{ fontWeight: 10, marginTop: 4, marginLeft: 1 }}> Verify with OTP</Typography>
+                                    </Item>
+                                  </Grid> <br></br>
+                                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Card className="Searchcard" sx={{ maxWidth: 750}}>
+                                      <CardContent>
+
+                                        <Grid sx={{ display: 'flex' }} container spacing={2} justifyContent="center">
+                                          <h3>Enter One Time Password</h3>
+                                        </Grid>
+                                        <Grid sx={{ display: 'flex' }} container spacing={2} justifyContent="center">
+                                          <h5 style={{ color: '#FF0000' }}>&nbsp;&nbsp;One Time Password(OTP) has been sent to your Mobile number, Please enter OTP to verify your Mobile Number</h5>
+                                        </Grid>
+                                        <Box sx={{ display: 'flex' }}>
+                                          <Grid sx={{ flexGrow: 0.5 }} container spacing={2} justifyContent="center">
+                                            <Grid container item xs={4.5} >
+                                              <TextField
+                                                sx={{ width:'250px', marginLeft: 1.5, marginBottom: 5, marginTop: 1.6 }}
+                                                name="Otp"
+                                                label='Enter OTP'
+                                                {...register("Otp")}
+                                                error={errors.Otp ? true : false}
+                                                size="small"
+                                                onChange={(e) => {
+                                                  setotpvalue(e.target.value)
+                                                  console.log(otpvalue);
+                                                }}
+                                              />
+                                              {errors.Otp?.message}
+                                              <Box sx={{ paddingLeft: 10, marginTop:-4 }}>
+                                                <Countdown
+                                                  date={Date.now() + 300000}
+                                                  renderer={renderer}
+                                                />
+                                              </Box>
+                                            </Grid>
+                                          </Grid>
+                                        </Box> 
+                                        <Stack direction="row" sx={{display:'flex',justifyContent:'center'}}>
+                                        &nbsp;&nbsp;<Button type="submit" sx={{borderRadius: '5px'}} variant="contained" disableElevation onClick={() => { validateotp(); handleNext(); }}>
+                                            Verify
+                                          </Button> &nbsp;&nbsp;
+                                          <Button type="submit" sx={{borderRadius: '5px'}} variant="contained">
+                                            Resend OTP
+                                          </Button>
+                                          </Stack>
+                                        <br></br>
+                                        </CardContent></Card> </div> 
+                                        <br></br>
+                                        <Grid sx={{ display: 'flex' }} container spacing={2} justifyContent="center">
+                                          <h5 sx={{ display: 'flex' }} spacing={2} justifyContent="center">Your OTP will expire in 5 minutes. Click 'Resend OTP' to get OTP again. </h5>
+                                        </Grid>
+                                        <br></br>
+                                </CardContent></Card></CardContent></Card>
+                        </React.Fragment>
+                      ) :
+                        activeStep === steps.length - 3 ? (
+                          <React.Fragment>
+                            <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+                              <CardContent>
+
+                                <br />
+                                <Card className="Searchcard" sx={{ borderRadius: '5px' }}>
+                                  <CardContent>
+                                    <Grid item xs={12}>
+                                      <Item sx={{ color: '#FFFFFF', backgroundColor: '#3f51b5', textAlign: 'left', fontSize: 18, display: 'flex' }}>
+                                        <img src={one} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} /> &nbsp;&nbsp;
+                                        <Typography style={{ fontWeight: 10, marginTop: 4, marginLeft: 1 }}> Enter User ID and proceed </Typography>
+                                      </Item>
+                                    </Grid> <br></br>
+                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                      <Card className="Searchcard" sx={{ maxWidth: 325 }}>
+                                        <CardContent>
+                                          <Grid sx={{ flexGrow: 0.5 }} container spacing={2} justifyContent="center">
+                                            <TextField
+                                              sx={{ width: '65ch', marginLeft: 5, marginRight: 5, marginBottom: 7, marginTop: 2, height: 2 }}
+                                              size="small"
+                                              name='Userid'
+                                              required
+                                              label='Enter User Id'
+                                              {...register("Userid")}
+                                              error={errors.Userid ? true : false}
+                                              onChange={(e) => {
+                                                setuseridvalue(e.target.value)
+                                                console.log(useridvalue);
+                                              }}
+                                            />
+                                            {errors.Userid?.message}
+                                          </Grid>
+
+                                          <Grid sx={{ flexGrow: 1 }} container spacing={2} justifyContent="center">
+                                            <FormControl sx={{ width: '65ch', marginLeft: 5, marginRight: 5, marginBottom: 7, marginTop: 2, height: 2 }} size="small">
+                                              <InputLabel id="demo-select-small" required>Login as</InputLabel>
+                                              <Select
+                                                name='loginas'
+                                                label='Login as'
+                                                {...register("loginas")}
+
+                                                error={errors.loginas ? true : false}
+                                                labelId="demo-select-small"
+                                                id="demo-select-small"
+                                                // value={age}
+                                                //label="Age"
+                                                onChange={handleChange1}
+                                              >
+                                                <MenuItem value="">
+
+                                                </MenuItem>
+                                                <MenuItem value={1}>{designationDrop[0]}Option1</MenuItem>
+                                                <MenuItem value={2}>{designationDrop[1]}Option2</MenuItem>
+                                                <MenuItem value={3}>{designationDrop[2]}Option3</MenuItem>
+                                                <MenuItem value={4}>{designationDrop[3]}Option4</MenuItem>
+                                                <MenuItem value={5}>{designationDrop[4]}Option5</MenuItem>
+                                              </Select>
+                                            </FormControl>
+                                            {errors.loginas?.message}
+                                          </Grid>
+
+                                          <Grid sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Captcha />
+                                          </Grid> <br></br>
+                                          <Button type="submit" sx={{ margin: 'auto', borderRadius: '5px', display: 'flex', justifyContent: 'center' }} variant="contained" disableElevation onClick={() => { sendotp(); handleNext(); }} >
+                                            Go
+                                          </Button>
+                                        </CardContent></Card> </div>
+                                    <br></br>
+                                    <Grid sx={{ display: 'flex' }} container spacing={2} justifyContent="center">
+                                      <h5 style={{ color: '#FF0000' }}>Note: We will send one time password(OTP) on your registered mobile number to reset your password.</h5>
+                                    </Grid>
+
+                                  </CardContent>
+                                </Card>
+
+                              </CardContent>
+                            </Card>
+
+                          </React.Fragment>
+                        ) :
+                          (
+                            <React.Fragment>
+
+                              <Card className="Searchcard" variant='outlined' sx={{ border: "none", boxShadow: "none", backgroundColor: '#f8fcfc' }}>
+                                <CardContent>
+                                  <br></br>
+                                  <Card className="Searchcard" sx={{ borderRadius: '5px' }}>
+                                    <CardContent>
+                                      <Grid container spacing={3}>
+                                        <Grid item xs={12}>
+                                          {/* <LooksOneOutlinedIcon  sx={{ fontSize: 30 }}/>  */}
+                                          <Item sx={{ color: '#FFFFFF', backgroundColor: '#3f51b5', textAlign: 'left', fontSize: 18, display: 'flex', borderRadius: '5px' }}>
+                                            <img src={one} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} /> &nbsp;&nbsp;
+                                            <Typography style={{ fontWeight: 10, marginTop: 2, marginLeft: 1 }}> Enter User ID and proceed </Typography>
+                                          </Item>
+                                        </Grid>
+                                        <Grid item xs={12} >
+                                          <Item sx={{ color: '#FFFFFF', backgroundColor: '#3f51b5', textAlign: 'left', fontSize: 18, display: 'flex', borderRadius: '5px' }}>
+                                            <img src={two} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} /> &nbsp;&nbsp;
+                                            <Typography style={{ fontWeight: 10, marginTop: 2, marginLeft: 1 }}> Verify with OTP</Typography>
+                                          </Item>
+                                        </Grid>
+                                        <Grid item xs={12} >
+                                          <Item sx={{ color: '#FFFFFF', backgroundColor: '#3f51b5', textAlign: 'left', fontSize: 18, display: 'flex', borderRadius: '5px' }}>
+                                            <img src={three} style={{ maxHeight: '30px', scale: '85%', borderRadius: '15px' }} /> &nbsp;&nbsp;
+                                            <Typography style={{ fontWeight: 10, marginTop: 2, marginLeft: 1 }}>Reset Password</Typography>
+                                          </Item>
+                                        </Grid>
+                                      </Grid>
+                                      <br />
+                                      <br />
+                                        <Button sx={{ margin: 'auto', borderRadius: '5px' ,display:'flex',justifyContent:'center'}} variant="contained" onClick={handleNext} >
+
+                                          Click here to Proceed
+                                        </Button>
+                                    </CardContent></Card></CardContent></Card>
+                            </React.Fragment>
+
+                          )}
+                  </CardContent></Card>
+              </Box>
+            </form>
+          </CardContent>
+        </Card>
+      </CardContent></Card>
+  );
+}
