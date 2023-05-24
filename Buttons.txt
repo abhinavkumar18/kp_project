@@ -1,0 +1,64 @@
+Area/Number button :
+
+                          <TableCell
+                            style={{ fontSize: "16px" }}
+                            sx={{
+                              border: "1px solid #ccc",
+                              padding: "10px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <Box
+                              component="form"
+                              sx={{
+                                "& .MuiTextField-root": { m: 1, width: "235px" },
+                              }}
+                              noValidate
+                              autoComplete="on"
+                            >
+                              <div>
+                                <TextField
+                                  label="Area in Sq. Ft"
+                                  id="outlined-size-small"
+                                  defaultValue=""
+                                  size="small"
+                                />
+                              </div>
+                            </Box>
+                          </TableCell>
+
+
+
+For Availability with Yes/No options:
+
+
+                        <TableCell
+                            style={{ fontSize: "16px" }}
+                            sx={{
+                              border: "1px solid #ccc",
+                              padding: "10px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <FormControl size="small">
+                            <InputLabel id="demo-simple-select-label" sx={{textAlign:"center"}}>
+                                Availability
+                            </InputLabel>
+                              <Select 
+                                sx={{ minWidth: "235px" }}
+                                defaultValue=""
+                                label="Availability"
+                              >
+                                <MenuItem value="yes">
+                                  Yes
+                                </MenuItem>
+                                
+                                <MenuItem value="no">
+                                  No
+                                </MenuItem>
+
+                              </Select>      
+                            </FormControl>
+                          </TableCell>
+
+                           
