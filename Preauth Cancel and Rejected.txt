@@ -1,0 +1,29 @@
+SELECT DISTINCT
+    to_char(add_months(ac.CS_PREAUTH_DT, -3), 'YYYY') 
+    || '-'||(to_char(add_months(ac.CS_PREAUTH_DT, -3), 'YYYY') + 1) as FINANCIAL_YEAR,
+    a.CASE_ID,
+    a.hosp_name,
+    ac.CASE_HOSP_CODE AS hosp_id,
+    l.loc_name AS hosp_dist,
+    a.GOVT_HOSP_TYPE as hosp_category,
+    a.HOSP_TYPE,
+    ac.cs_preauth_dt as PreAuth_initiate_Date,
+  --  ac.pck_appv_amt AS preauth_initiate_amount,
+    aid.CASE_TOT_PCKG_AMT AS preauth_initiate_amount,
+    a.status_name AS Current_Case_Status
+FROM
+    asrir_pre_auth_view_ap a,
+    asrit_case ac,
+    asrim_locations l,
+    asrit_case_invest_dtls aid
+WHERE
+    a.case_id = ac.case_id
+    AND ac.case_id = aid.case_id
+    AND   l.loc_id = a.hosp_dist_id
+    AND   l.loc_hdr_id = 'LH6'
+    AND   ac.case_status in ('CD3018','CD9021','CD15734','CD15735','CD82','CD3027',
+    'CD88','CD1277','CD15737','CD255','CD292','CD127','CD1999')
+  --  AND   ac.case_hosp_code='HS318'
+    AND   ac.CS_PREAUTH_DT BETWEEN TO_DATE('28/09/2023 00:00:00','dd/mm/yyyy HH24:MI:SS') 
+    AND TO_DATE('04/10/2023 23:59:59','dd/mm/yyyy HH24:MI:SS')
+    order by ac.CS_PREAUTH_DT desc;

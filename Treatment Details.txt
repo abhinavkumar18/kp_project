@@ -1,0 +1,42 @@
+SELECT distinct
+        cs.case_id,
+        cs.CS_DIAGNOSIS,
+        asy.DIS_MAIN_id Speciality,
+        asy.dis_sub_id Sub_Speciality,
+        asy.surgery_id Procedure_code,
+        asy.surgery_desc Procedure_Name,
+        csinvst.CASE_DOC_QUALIFICATION,
+        csinvst.case_dt_admission Admission_Date,
+        cs.CS_DIS_DT discharge_date,
+        asy.PROC_TYPE,
+        csinvst.case_final_diagnosis Final_Diagnosis,
+        nvl(asy.hosp_stay_amt,0) + nvl(asy.common_surgery_amt,0) + nvl(asy.buffer_amt,0) AS Procedure_Amount,
+        cs.CS_DEATH_DT,
+        cs.CS_APPRV_REJ_DT as Preauth_Aprv_Rej_Date,
+        apd.family_history,
+        history_illness,
+        past_history,
+        examntn_findings,
+        case_final_diagnosis,
+        case_r_investigations,
+        case_s_investigations,
+        cs.ACTUAL_CLM_SUB_DT as claim_submitted_date
+      FROM
+        asrit_case cs,
+        asrit_case_surgery cssr,
+        asrit_case_invest_dtls csinvst,
+        asrim_surgery asy,
+        asrit_patient_details apd,
+        asrit_patient_hosp_diagnosis aphd
+      WHERE
+              cs.case_id = cssr.case_id
+        AND   csinvst.case_id = cs.case_id
+        AND   asy.surgery_id= cssr.surgery_code
+        AND   asy.dis_main_id=cssr.dis_main_code
+        and   asy.dis_sub_id=cssr.dis_sub_code
+        AND   asy.state_flag IN ('AP','BOTH','N')
+        AND   apd.patient_id = cs.case_patient_no
+        AND   apd.patient_id = aphd.patient_id
+        AND   cs.ACTUAL_CLM_SUB_DT BETWEEN TO_DATE('01/07/2023 00:00:00','DD/MM/YYYY HH24:MI:SS')
+    AND   TO_DATE('31/08/2023 23:59:59','DD/MM/YYYY HH24:MI:SS')
+    order by cs.ACTUAL_CLM_SUB_DT desc;

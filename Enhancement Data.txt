@@ -1,0 +1,35 @@
+SELECT DISTINCT
+    TO_CHAR(add_months(ac.ACTUAL_CLM_SUB_DT,-3),'YYYY')|| '-'|| ( TO_CHAR(add_months(ac.ACTUAL_CLM_SUB_DT,-3),'YYYY') + 1 ) AS financial_year,
+    ac.case_id,
+    --ac.CS_ENH_REQ_DT AS enhancement_raised_date,
+    (SELECT MAX(crt_dt) FROM asrit_audit a
+    WHERE  a.case_id = ac.case_id  AND   a.act_id = 'CD426' ) AS enhancement_raised_date,
+    acc.case_nwh_enh_amt AS enhancement_raised_amt,
+    acc.case_ceo_enh_apprv_amt AS enhancement_approved_amount,
+    (SELECT MAX(crt_dt)  FROM asrit_audit a
+        WHERE a.case_id = ac.case_id  
+        AND  a.act_id in ('CD758','CD425','CD426','CD427','CD428','CD429','CD430','CD1800','CD1801','CD1802','CD1803','CD3','CD15',
+'CD29','CD48','CD49','CD50','CD64','CD2561','CD225','CD727','CD935','CD933','CD934','CD443','CD8001','CD8002',
+'CD8003','CD3025','CD3026','CD3027','CD3028','CD1994','CD690','CD1501','CD1502','CD1503','CD1508','CD1995','CD1996') ) AS enhancement_lst_upd_date,
+    (SELECT distinct acm.cmb_dtl_name
+        FROM asrit_audit a, asrim_combo acm
+        WHERE  a.case_id = ac.case_id
+        AND  a.act_id = acm.cmb_dtl_id
+        AND   a.crt_dt in (select max(b.crt_dt) from asrit_audit b 
+        where act_id in ('CD758','CD425','CD426','CD427','CD428','CD429','CD430','CD1800','CD1801','CD1802','CD1803','CD3','CD15',
+'CD29','CD48','CD49','CD50','CD64','CD2561','CD225','CD727','CD935','CD933','CD934','CD443','CD8001','CD8002',
+'CD8003','CD3025','CD3026','CD3027','CD3028','CD1994','CD690','CD1501','CD1502','CD1503','CD1508','CD1995','CD1996')
+        and b.case_id = a.case_id)) AS status_of_enhancement,
+        ac.ACTUAL_CLM_SUB_DT as claim_submitted_date
+FROM
+    asrit_case ac,
+    asrit_audit aa,
+    asrit_case_claim acc
+WHERE
+    ac.case_id = aa.case_id
+    AND   ac.case_id = acc.case_id
+    --AND   ac.case_id in ('AP0310267')
+    AND   ac.ACTUAL_CLM_SUB_DT BETWEEN TO_DATE('01/07/2023 00:00:00','DD/MM/YYYY HH24:MI:SS')
+        AND   TO_DATE('31/08/2023 23:59:59','DD/MM/YYYY HH24:MI:SS')
+ORDER BY ac.ACTUAL_CLM_SUB_DT,
+    financial_year;

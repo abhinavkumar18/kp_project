@@ -1,0 +1,50 @@
+select /*+ index(ac) index(ap) index(ad) index(al) index(ah) index(ad1) index(al1) index(afp) */
+distinct
+TO_CHAR(add_months(ac.ACTUAL_CLM_SUB_DT,-3),'YYYY')|| '-'|| ( TO_CHAR(add_months(ac.ACTUAL_CLM_SUB_DT,-3),'YYYY') + 1 ) AS financial_year,
+ap.RATION_CARD_NO as Health_Card_Number,
+ap.patient_id,
+ap.PATIENT_IPOP Patient_type,
+ac.case_id Case_Number,
+ac.CLAIM_NO,
+ap.first_name|| ' '|| ap.middle_name|| ' '|| ap.last_name Patient_Name,
+ap.RESIDENT_ID,
+ap.contact_no Patient_Mobile_Number,
+ap.gender Patient_Gender,
+ap.age Patient_Age,
+ad.dist_name patient_district,
+al1.loc_name Patient_Village,
+al.loc_name Patient_mandal,
+ap.PIN_CODE,
+case when ap.OCCUPATION_CD like 'CD%' then acm.CMB_DTL_NAME
+else ap.OCCUPATION_CD end AS Occupation,
+ah.hosp_name,
+ah.HOSP_ID,
+ah.HOSP_DISP_CODE,
+ad1.dist_name hosp_district,
+ah.HOSP_CITY,
+ah.hosp_type,
+GE_CODE_LATITUDE as Hospital_LATITUDE,
+GE_CODE_LONGITUDE as Hospital_LONGITUDE,
+ac.ACTUAL_CLM_SUB_DT as CLAIM_SUBMITED_DATE
+FROM
+asrit_case ac,
+asrit_patient ap,
+asrim_dist_seq ad,
+asrim_locations al,
+asrim_hospitals ah,
+asrim_dist_seq ad1,
+asrim_locations al1,
+asrim_combo acm,
+asrit_empnl_hospinfo aeh
+WHERE
+ac.case_patient_no = ap.patient_id
+AND ap.district_code = ad.dist_id
+AND ap.mandal_code = al.loc_id (+)
+AND ap.village_code = al1.loc_id (+)
+AND ac.case_hosp_code = ah.hosp_id
+AND ah.dist_id = ad1.dist_id
+AND ah.hosp_empnl_ref_num = aeh.hospinfo_id
+and acm.cmb_dtl_id(+) = ap.OCCUPATION_CD
+AND  ac.ACTUAL_CLM_SUB_DT BETWEEN TO_DATE('01/07/2023 00:00:00','DD/MM/YYYY HH24:MI:SS')
+    AND   TO_DATE('31/08/2023 23:59:59','DD/MM/YYYY HH24:MI:SS')
+    order by ac.ACTUAL_CLM_SUB_DT desc;
