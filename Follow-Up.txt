@@ -1,0 +1,21 @@
+select 
+case_followup_id, ac.case_id, acm.cmb_dtl_id followup_status_code,
+acm.cmb_dtl_name followup_status_name, f.crt_dt,  ap.patient_id, ap.ration_card_no, 
+ap.resident_id, ap.first_name patient_name, -- ap.aadhar_no, 
+(select distinct UID_NO from(
+        SELECT  UID_NO FROM ASRIT_JANMABHOOMI_FAMILY  WHERE RESIDENT_ID = AP.RESIDENT_ID  and active_yn = 'Y'
+        UNION ALL
+        SELECT  UID_NO FROM ASRIT_TAP_FAMILY_AP WHERE RESIDENT_ID = AP.RESIDENT_ID   and active_yn = 'Y'
+        UNION ALL 
+        SELECT  UID_NO FROM ASRIT_FAMILY_CS_AP WHERE RESIDENT_ID = AP.RESIDENT_ID  and active_yn = 'Y'
+
+    ) WHERE ROWNUM = 1
+    ) AADHAR_NO
+
+from asrit_case_followup_claim f
+left join asrit_case ac on ac.case_id = f.case_id
+left join asrit_patient ap on ap.patient_id = ac.case_patient_no
+left join asrim_combo acm on acm.cmb_dtl_id = f.payment_status
+where f.payment_status = 'CD412'
+and to_date(f.crt_dt) = to_date(sysdate) - 1
+order by f.crt_dt desc
