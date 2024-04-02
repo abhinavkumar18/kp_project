@@ -19,3 +19,12 @@ left join asrim_combo acm on acm.cmb_dtl_id = f.payment_status
 where f.payment_status = 'CD412'
 and to_date(f.crt_dt) = to_date(sysdate) - 1
 order by f.crt_dt desc
+
+spring.mail.host=10.10.223.151
+spring.mail.port=25
+spring.mail.username=biometricissues@ysraarogyasri.ap.gov.in
+spring.mail.password=Password@123
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+Password@1123
