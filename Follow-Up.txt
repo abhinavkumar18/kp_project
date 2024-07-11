@@ -44,3 +44,18 @@ LEFT JOIN ysr.ysr_general_type_mst gtm ON gtm.type_id = dcf.month_raised_for
 WHERE dcf.status = 274 and dcf.merged_request_number = 'DC_MER/2024/0000026'
 GROUP BY dcf.merged_request_number,dcf.admin_sanction_number, dcf.remarks,stm.case_status_name, dm.district_name, dcf.year_raised_for,gtm.type_name, dcf.crt_on
 ORDER BY dcf.admin_sanction_number;
+
+
+SELECT 
+    dm.district_name AS District,
+    SUM(dcp.amount) AS total_amount_raised,
+    COUNT(CASE WHEN dcf.form_type= '1' THEN 1 END) AS no_of_office_expense_form_submitted,
+    COUNT(CASE WHEN dcf.form_type= '2' THEN 1 END) AS no_of_hired_travel_expense_form_submitted
+FROM ysr.ysr_dc_forms dcf
+LEFT JOIN ysr.ysr_dc_forms_pariculars_list dcp ON dcp.form_id = dcf.form_id
+LEFT JOIN ysr.ysr_dc_forms_particulars_mst dcpm ON dcpm.particular_id = dcp.particular_id
+LEFT JOIN ysr.ysr_user_district_mapping udm ON udm.user_id = dcf.crt_by
+LEFT JOIN ysr.ysr_district_mst dm ON dm.dist_id = udm.district_id
+WHERE dcf.status = 274
+GROUP BY dm.district_name
+ORDER BY dm.district_name;
