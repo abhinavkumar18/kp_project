@@ -59,3 +59,268 @@ LEFT JOIN ysr.ysr_district_mst dm ON dm.dist_id = udm.district_id
 WHERE dcf.status = 274
 GROUP BY dm.district_name
 ORDER BY dm.district_name;
+*******************************************
+-- For count api :
+
+-- Medco : (initiated request count, approved request count, rejected request count)
+
+-- MO: (initiated request count, approved request count,request dispatched, request delivered)
+
+-- PH:(initiated request count, approved request count,request dispatched, request delivered, request pending at me )
+
+-- CEO:(same as MO)
+ 
+--Medco initiated count
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status = 1 or mra.status = 1
+
+and crt_by = ;
+ 
+--Medco approved count
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status = 3 or mra.status = 3
+
+and crt_by = ;
+ 
+--Medical Officer
+
+-- Tiles in MO login - Request initiated , 
+
+-- Request approved by Medical officer , 
+
+-- Request dispatched by vendor to pharmacist ,  
+
+-- Request  dispatched to beneficiary , Request delivered.
+ 
+-- Request initiated
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (1,2) or mra.status in (1,2)
+
+-- and crt_by = 
+
+;
+ 
+-- Request approved by Medical officer
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+
+and upd_by = 
+
+;
+ 
+-- Request dispatched by vendor to pharmacist , 
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+
+-- and upd_by = 
+
+;
+ 
+-- Request  dispatched to beneficiary
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+
+-- and upd_by = 
+
+;
+ 
+-- Request delivered
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+
+-- and upd_by = 
+
+;
+ 
+-- Dashboard tiles in Vendor login : 
+
+-- Requests Raised,Requests Dispatched, 
+
+-- Requests Delivered.
+ 
+-- Requests Raised
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+
+-- and upd_by = 
+
+;
+ 
+-- Requests Dispatched,
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+
+-- and upd_by = 
+
+;
+ 
+-- Requests Delivered.
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+
+-- and upd_by = 
+
+;
+ 
+-- Pharmacist
+
+-- Request initiated , Request approved by Medical officer, 
+
+-- Requests pending with Vendor , 
+
+-- Request dispatched by vendor to pharmacist ,  
+
+-- Request  dispatched to beneficiary , Request delivered.
+ 
+-- Request initiated
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status = 2 or mra.status = 2
+
+and crt_by = ;
+ 
+-- Request approved by Medical officer
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status = 5 or mra.status = 5
+
+and crt_by = ;
+ 
+-- Request dispatched by vendor to pharmacist
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+
+-- and upd_by = 
+
+;
+ 
+-- Requests Dispatched to beneficiary,
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+
+-- and upd_by = 
+
+;
+ 
+-- Requests Delivered.
+
+select count(*) from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+
+-- and upd_by = 
+
+;
+ 
+-- 2. Api for the inbox table where userid will be a mandatory input and the filters will be request no. , status , created on
+
+-- (Fetched data needed : request no. , empId, empName, raised on , current status )
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+
+mr.crt_on raised_on,
+
+sr.case_status_name current_status
+
+from medical.md_beneficiary_request_details mr
+
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+
+left join medical.md_step_role_mapping sr on sr.step_role_id = mr.status
+
+where crt_by =
+
+ *************************************
+--Audit history
+ 
+select * from (
+select (select  distinct yrm.role_name	from medical.md_step_flow_mapping asfm, 
+			medical.md_step_role_mapping asrm1, medical.md_role_mst yrm where yrm.role_id = asrm1.role_id  
+			and  asfm.next_step_role_id  = dc.status
+			and asfm.initial_step_role_id = asrm1.step_role_id
+			group by asfm.initial_step_role_id, yrm.role_name
+			 )
+				 || ' , ' || user_name roleAndName,coalesce(dc.upd_on,dc.crt_on) dateTime,sm.case_status_name,dc.remarks
+from medical.md_beneficiary_request_details dc
+left join medical.md_user_mst yum on yum.user_id = coalesce(dc.upd_by,dc.crt_by)
+left join medical.md_step_role_mapping sm on sm.step_role_id = dc.status
+where dc.request_number = 
+union all 
+select (select  distinct yrm.role_name	from medical.md_step_flow_mapping asfm, 
+			medical.md_step_role_mapping asrm1, medical.md_role_mst yrm where yrm.role_id = asrm1.role_id  
+			and  asfm.next_step_role_id  = dc.status
+			and asfm.initial_step_role_id = asrm1.step_role_id
+			group by asfm.initial_step_role_id, yrm.role_name
+			 )
+				 || ' , ' || user_name roleAndName,coalesce(dc.upd_on,dc.crt_on) dateTime,sm.case_status_name,dc.remarks
+from medical.md_beneficiary_request_details_audit dc
+left join medical.md_user_mst yum on yum.user_id = coalesce(dc.upd_by,dc.crt_by)
+left join medical.md_step_role_mapping sm on sm.step_role_id = dc.status
+where dc.request_number = ) as b
+order by b.dateTime
+ 
+-- All data
+ 
+select mr.request_number,md.drug_name,gm.type_name drug_type,md.quantity,md.remarks,
+md.batch_no,md.manufactured_date,md.expiry_date,md.mrp,md.gst_slab
+mr.crt_on raised_on,sm.case_status_name
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_drug_details md on md.request_number = mr.request_number
+left join medical.md_general_type_mst gm on gm.type_id = md.drug_type
+left join medical.md_step_role_mapping sm on sm.step_role_id = mr.status
