@@ -334,3 +334,274 @@ left join medical.md_step_role_mapping sr on sr.step_role_id = mr.status
 join medical.md_step_mst sm on sm.step_id = sr.step_id and sm.workflow_id = '1' 
 -- join medical.md_role_mst rm on rm.role_id = srm.role_id
 where sr.role_id =
+*****************************************************************************************************
+Indent Request Id, Employee Id, User Name, Mobile Number, District, Raised Date
+ 
+--Medco initiated count
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status = 1 or mra.status = 1
+and crt_by = ;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status = 1 or mra.status = 1
+and crt_by = ;
+ 
+--Medco approved count
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status = 3 or mra.status = 3
+and crt_by = ;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status = 3 or mra.status = 3
+and crt_by = ;
+ 
+--Medical Officer
+-- Tiles in MO login - Request initiated , 
+-- Request approved by Medical officer , 
+-- Request dispatched by vendor to pharmacist ,  
+-- Request  dispatched to beneficiary , Request delivered.
+ 
+-- Request initiated
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (1,2) or mra.status in (1,2)
+-- and crt_by = 
+;
+ 
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (1,2) or mra.status in (1,2)
+-- and crt_by = 
+;
+ 
+ 
+-- Request approved by Medical officer
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+and upd_by = 
+;
+ 
+-- Request dispatched by vendor to pharmacist , 
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+-- and upd_by = 
+;
+ 
+-- Request  dispatched to beneficiary
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+-- Request delivered
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
+ 
+-- Dashboard tiles in Vendor login : 
+-- Requests Raised,Requests Dispatched, 
+-- Requests Delivered.
+ 
+-- Requests Raised
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (3,5) or mra.status in (3,5)
+-- and upd_by = 
+;
+ 
+-- Requests Dispatched,
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+-- Requests Delivered.
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
+ 
+ 
+-- Pharmacist
+-- Request initiated , Request approved by Medical officer, 
+-- Requests pending with Vendor , 
+-- Request dispatched by vendor to pharmacist ,  
+-- Request  dispatched to beneficiary , Request delivered.
+ 
+-- Request initiated
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status = 2 or mra.status = 2
+and crt_by = ;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status = 2 or mra.status = 2
+and crt_by = ;
+ 
+-- Request approved by Medical officer
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status = 5 or mra.status = 5
+and crt_by = ;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status = 5 or mra.status = 5
+and crt_by = ;
+ 
+-- Request dispatched by vendor to pharmacist
+ 
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (7,8) or mra.status in (7,8)
+-- and upd_by = 
+;
+ 
+-- Requests Dispatched to beneficiary,
+ 
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (15,16) or mra.status in (15,16)
+-- and upd_by = 
+;
+ 
+-- Requests Delivered.
+ 
+select count(*) from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
+ 
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mb.beneficiary_phone_no,dm.district_name,mr.crt_on
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_beneficiary_request_details_audit mra on mr.request_number = mra.request_number
+left join medical.md_district_mst dm on dm.id = mb.district_id
+where 1=1 and mr.status in (17,18) or mra.status in (17,18)
+-- and upd_by = 
+;
