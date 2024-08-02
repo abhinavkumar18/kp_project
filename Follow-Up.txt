@@ -324,3 +324,13 @@ from medical.md_beneficiary_request_details mr
 left join medical.md_beneficiary_request_drug_details md on md.request_number = mr.request_number
 left join medical.md_general_type_mst gm on gm.type_id = md.drug_type
 left join medical.md_step_role_mapping sm on sm.step_role_id = mr.status
+********************************************************************************************
+select mr.request_number,mb.beneficiary_id,mb.beneficiary_name,
+mr.crt_on raised_on,sr.case_status_name current_status
+from medical.md_beneficiary_request_details mr
+left join medical.md_beneficiary_mst mb on mb.id = mr.beneficiary_id
+left join medical.md_step_role_mapping sr on sr.step_role_id = mr.status
+-- join medical.md_user_mst um on um.user_id = mr.crt_by
+join medical.md_step_mst sm on sm.step_id = sr.step_id and sm.workflow_id = '1' 
+-- join medical.md_role_mst rm on rm.role_id = srm.role_id
+where sr.role_id =
