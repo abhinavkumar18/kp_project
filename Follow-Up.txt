@@ -605,3 +605,14 @@ left join medical.md_district_mst dm on dm.id = mb.district_id
 where 1=1 and mr.status in (17,18) or mra.status in (17,18)
 -- and upd_by = 
 ;
+********************************************************************************************
+SELECT mr.request_number,COALESCE(mb.beneficiary_id, parent_mb.beneficiary_id) AS beneficiary_id,
+mb.beneficiary_name AS beneficiary_name,mr.crt_on AS raised_on,
+mg.type_name AS relation,sr.case_status_name AS current_status
+FROM medical.md_beneficiary_request_details mr
+LEFT JOIN medical.md_beneficiary_mst mb ON mb.id = mr.beneficiary_id
+LEFT JOIN medical.md_beneficiary_mst parent_mb ON parent_mb.id = mb.parent_benficiary_id
+LEFT JOIN medical.md_general_type_mst mg ON mg.type_id = COALESCE(mb.relation, parent_mb.relation)
+LEFT JOIN medical.md_step_role_mapping sr ON sr.step_role_id = mr.status
+JOIN medical.md_step_mst sm ON sm.step_id = sr.step_id AND sm.workflow_id = '1'
+WHERE sr.role_id = ;
