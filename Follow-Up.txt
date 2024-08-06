@@ -616,3 +616,111 @@ LEFT JOIN medical.md_general_type_mst mg ON mg.type_id = COALESCE(mb.relation, p
 LEFT JOIN medical.md_step_role_mapping sr ON sr.step_role_id = mr.status
 JOIN medical.md_step_mst sm ON sm.step_id = sr.step_id AND sm.workflow_id = '1'
 WHERE sr.role_id = ;
+*****************************************************************************************************
+{ 
+
+    "requestNumber":"MD/2024/8/0000036", 
+
+    "actionId": 1, 
+
+    "userId": 581, 
+
+    "remarks": "Acknowledging", 
+
+    "drugList":[ 
+
+        { 
+
+            "drugId": 81, 
+
+            "drugName": "Rantac", 
+
+            "noOfTablets": 80, 
+
+            "drugType": 21, 
+
+            "drugTypeName": "Tonic", 
+
+            "status": 1, 
+
+            "batchNo": "A-C", 
+
+            "manufacturedDate": "08/03/2024", 
+
+            "expiryDate": "10/10/2030", 
+
+            "mrp": 9800, 
+
+            "gstSlab": "LOW", 
+
+            "isShipped": true, 
+
+            "isAcknowledged": true 
+
+        }, 
+
+        { 
+
+            "drugId": 82, 
+
+            "drugName": "PAN-D", 
+
+            "noOfTablets": 67, 
+
+            "drugType": 20, 
+
+            "drugTypeName": "Tablets", 
+
+            "status": 1, 
+
+            "batchNo": "D-G", 
+
+            "manufacturedDate": "14/06/2023", 
+
+            "expiryDate": "15/11/2029", 
+
+            "mrp": 12000, 
+
+            "gstSlab": "MED", 
+
+            "isShipped": true, 
+
+            "isAcknowledged": true 
+
+        }, 
+
+        { 
+
+            "drugId": 83, 
+
+            "drugName": "Paracetamol", 
+
+            "noOfTablets": 67, 
+
+            "drugType": 22, 
+
+            "drugTypeName": "Insulin", 
+
+            "status": 1, 
+
+            "batchNo": "K-X", 
+
+            "manufacturedDate": "15/04/2020", 
+
+            "expiryDate": "12/12/2027", 
+
+            "mrp": 14400, 
+
+            "gstSlab": "HIG", 
+
+            "isShipped": null, 
+
+            "isAcknowledged": null 
+
+        } 
+
+    ], 
+
+    "dispatchDrugs":null 
+
+} 
